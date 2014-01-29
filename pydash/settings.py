@@ -24,7 +24,14 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ADMINS = (
+)
+
+MANAGERS = ADMINS
+
+TIMS_JS_REFRESH = 2000
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,14 +51,23 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 ROOT_URLCONF = 'pydash.urls'
 
 WSGI_APPLICATION = 'pydash.wsgi.application'
 
+STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
@@ -75,6 +91,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    # 'django.template.loaders.eggs.Loader',
+    )
+
+TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', 'templates'),)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
