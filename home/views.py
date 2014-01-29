@@ -1,4 +1,4 @@
-import socket
+from main.views import *
 
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
@@ -15,3 +15,5 @@ def index(request):
         return HttpResponseRedirect('/login')
     else:
         return HttpResponseRedirect('/home')
+
+    

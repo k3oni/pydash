@@ -1,0 +1,49 @@
+{% load i18n %}{% load staticfiles %}<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    {% block style %}{% endblock %}
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">pyDash</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+                <li>
+                       <a href="{% url 'infrastructure' %}" title="{% trans "Show all host and vm's" %}">{% trans "Infrastructure" %}</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                {% if request.user.is_authenticated or user.is_authenticated %}
+                    <li class="">
+                        <a href="{% url 'logout' %}">{% trans "Sign out" %}</a>
+                    </li>
+                {% else %}
+                    <li class="">
+                        <a href="{% url 'login' %}">{% trans "Sign in" %}</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+<script src="{% static "js/jquery-1.10.2.js" %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+{% block script %}{% endblock %}
+</body>
+</html>
