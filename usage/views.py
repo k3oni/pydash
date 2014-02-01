@@ -14,21 +14,15 @@ def cpuusage(request):
         return HttpResponseRedirect('/login')
 
     datasets = []
-    compute = Compute.objects.get(id=host_id)
 
     try:
-        conn = wvmHostDetails(compute.hostname,
-                              compute.login,
-                              compute.password,
-                              compute.type)
-        cpu_usage = conn.get_cpu_usage()
-        conn.close()
-    except libvirtError:
+        cpu_usage = get_cpu_usage()
+    except Exception:
         cpu_usage = 0
 
     try:
         cookies = request._cookies['cpu_usage']
-    except KeyError:
+    except Exception:
         cookies = None
 
     if not cookies:
@@ -81,15 +75,9 @@ def memusage(request):
         return HttpResponseRedirect('/login')
         
     datasets = []
-    #compute = Compute.objects.get(id=host_id)
 
     try:
-        #conn = wvmHostDetails(compute.hostname,
-        #                      compute.login,
-        #                      compute.password,
-        #                      compute.type)
         mem_usage = get_mem()
-        #conn.close()
     except Exception:
         mem_usage = 0
 
@@ -148,15 +136,9 @@ def loadaverage(request):
         return HttpResponseRedirect('/login')
         
     datasets = []
-    #compute = Compute.objects.get(id=host_id)
 
     try:
-        #conn = wvmHostDetails(compute.hostname,
-        #                      compute.login,
-        #                      compute.password,
-        #                      compute.type)
         load_average = get_load()
-        #conn.close()
     except Exception:
         load_average = 0
 
