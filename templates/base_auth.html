@@ -6,8 +6,12 @@
     <link rel="shortcut icon" href="{% static "img/favicon.ico" %}">
     <title>{% block title %}{% endblock %}</title>
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
     <link href="{% static "css/signin.css" %}" rel="stylesheet">
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <link href="{% static "css/fonts.css" %}" rel="stylesheet">
+    <link href="{% static "css/font-awesome.css" %}" rel="stylesheet">    
+    <link href="{% static "css/bootstrap-responsive.min.css" %}" rel="stylesheet">
 </head>
 <body>
 <!-- Static navbar -->
@@ -15,15 +19,11 @@
     <div class="navbar-inner">
 	<div class="container">
             <a class="brand" href="/">pyDash</a>
-            <ul class="btn-group btn">
+            <ul class="btn btn-mini">
                 {% if request.user.is_authenticated %}
-                    <li class="">
                         <a href="{% url 'logout' %}">{% trans "Sign out" %}</a>
-                    </li>
                 {% else %}
-                    <li class="">
                         <a href="{% url 'login' %}">{% trans "Sign in" %}</a>
-                    </li>
                 {% endif %}
             </ul>
         </div>
@@ -32,7 +32,7 @@
 <div class="container">
     {% block content %}{% endblock %}
 </div>
-<script src="{% static "js/jquery-1.10.2.js" %}"></script>
+<script src="{% static "js/jquery.js" %}"></script>
 <script src="{% static "js/bootstrap.min.js" %}"></script>
 </body>
 </html>

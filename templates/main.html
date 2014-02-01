@@ -11,7 +11,6 @@
     <link href="{% static "css/bootstrap-responsive.min.css" %}" rel="stylesheet">
     <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
     <link href="{% static "css/style.css" %}" rel="stylesheet">
-    <link href="{% static "css/progressbar.css" %}" rel="stylesheet">
     {% block style %}{% endblock %}
 </head>
 <body>
@@ -19,17 +18,16 @@
     <div class="navbar-inner">
 	<div class="container">
             <a class="brand" href="/">pyDash</a>
-            <ul class="btn-group btn">
+            <ul class="btn btn-mini">
                 {% if request.user.is_authenticated or user.is_authenticated %}
-                    <li class="">
                         <a href="{% url 'logout' %}">{% trans "Sign out" %}</a>
-                    </li>
                 {% else %}
-                    <li class="">
                         <a href="{% url 'login' %}">{% trans "Sign in" %}</a>
-                    </li>
                 {% endif %}
             </ul>
+            <div class="nav-collapse" id="refresh-home">
+                        
+	    </div>
         </div>
     </div>
 </div>
@@ -38,11 +36,12 @@
       <div class="container">
         <ul class="mainnav">
             <li><a href="#refresh-os"><i class="icon-dashboard"></i><span>General</span> </a> </li>
-            <li><a href="#refresh-df"><i class="icon-list-alt"></i><span>Disk</span> </a> </li>
+            <li><a href="#refresh-df"><i class="icon-hdd"></i><span>Disk</span> </a> </li>
             <li><a href="#refresh-ps"><i class="icon-list-alt"></i><span>CPU</span> </a> </li>
             <li><a href="#refresh-ram"><i class="icon-list-alt"></i><span>RAM</span> </a> </li>
-            <li><a href="#refresh-load"><i class="icon-group"></i><span>Users</span> </a> </li>
+            <li><a href="#refresh-load"><i class="icon-bolt"></i><span>Load</span> </a> </li>
     	    <li><a href="#refresh-ispeed"><i class="icon-exchange"></i><span>Network</span> </a> </li>
+    	    <li><a href="#refresh-home"><i class="icon-home"></i><span>Home</span> </a> </li>
 	</ul>
       </div>
       <!-- /container --> 
@@ -61,9 +60,7 @@
             <div class="widget-header"> <i class="icon-info-sign"></i>
               <h3>General Info</h3>
               
-              <div id="refresh-os" class="btn btn-mini js-refresh-info">
-                <i class="icon-refresh"></i> &nbsp;&nbsp;Refresh
-            
+              <div id="refresh-os">
               </div>
                 
             </div>
@@ -106,10 +103,9 @@
     <div class="row">
          <div class="span6">
            <div class="widget">
-            <div class="widget-header"> <i class="icon-list"></i>
+            <div class="widget-header"> <i class="icon-hdd"></i>
               <h3>Disk Usage</h3>
-              <div id="refresh-df" class="btn btn-mini js-refresh-info">
-                <i class="icon-refresh"></i> &nbsp;&nbsp;Refresh
+              <div id="refresh-df">
               </div>
             </div>
             <!-- /widget-header -->
@@ -123,7 +119,7 @@
          
           <div class="span6">
             <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-group"></i>
+            <div class="widget-header"> <i class="icon-bolt"></i>
               <h3>Load Average</h3>
               <div id="refresh-load">
               </div>
@@ -150,8 +146,7 @@
            <div class="widget">
             <div class="widget-header"> <i class="icon-list"></i>
               <h3>Software</h3>
-              <div id="refresh-whereis" class="btn btn-mini js-refresh-info">
-                <i class="icon-refresh"></i> &nbsp;&nbsp;Refresh
+              <div id="refresh-whereis">
               </div>
             </div>
             <!-- /widget-header -->
@@ -187,8 +182,7 @@
            <div class="widget">
             <div class="widget-header"> <i class="icon-monitor"></i>
               <h3>Internet Speed</h3>
-              <div id="refresh-ispeed" class="btn btn-mini js-refresh-info">
-                <i class="icon-refresh"></i> &nbsp;&nbsp;Refresh
+              <div id="refresh-ispeed">
               </div>
             </div>
             <!-- /widget-header -->
@@ -208,8 +202,7 @@
 	<div class="widget widget-table action-table">
             <div class="widget-header"> <i class="icon-group"></i>
               <h3>Online</h3>
-              <div id="refresh-online" class="btn btn-mini js-refresh-info">
-                <i class="icon-refresh"></i> &nbsp;&nbsp;Refresh
+              <div id="refresh-online">
               </div>
             </div>
             <!-- /widget-header -->
@@ -231,8 +224,7 @@
           <div class="widget">
             <div class="widget-header"> <i class="icon-dashboard"></i>
               <h3> Processes </h3>
-              <div id="refresh-ps" class="btn btn-mini js-refresh-info">
-                <i class="icon-refresh"></i> &nbsp;&nbsp;Refresh
+              <div id="refresh-ps">
               </div>
 		<div class="pull-right">
                 <input type="text" id="filter-ps" class="widget-search" placeholder="search..." />
