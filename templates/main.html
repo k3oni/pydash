@@ -168,10 +168,8 @@
               </div>
             </div>
             <!-- /widget-header -->
-            <div class="widget-content">
-                <table id="ip_dashboard" class="table table-hover table-condensed table-bordered" >
-		{{ getip }}
-                </table>
+            <div class="widget-content" id="getip">
+		{% include 'ip.html' %}
             </div>
             <!-- /widget-content -->
           </div>
