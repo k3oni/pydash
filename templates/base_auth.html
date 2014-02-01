@@ -11,18 +11,11 @@
 </head>
 <body>
 <!-- Static navbar -->
-<div class="navbar navbar-inverse navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">pyDash</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+	<div class="container">
+            <a class="brand" href="/">pyDash</a>
+            <ul class="btn-group btn">
                 {% if request.user.is_authenticated %}
                     <li class="">
                         <a href="{% url 'logout' %}">{% trans "Sign out" %}</a>
@@ -33,7 +26,7 @@
                     </li>
                 {% endif %}
             </ul>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
 </div>
 <div class="container">
