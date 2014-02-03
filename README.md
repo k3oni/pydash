@@ -1,5 +1,5 @@
 pyDash
 ======
 
-A small web monitoring dashboard for you linux pc/server in Python and Django
+A small web monitoring dashboard for you linux pc/server writen in Python and Django
 
