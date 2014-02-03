@@ -7,7 +7,7 @@
         </tr>
     </thead>
     <tbody id="os-users">
-    {% for user in online_users %}
+    {% for user in getusers %}
         {% cycle '<tr>' '' ''%}
         <td>{{user}}</td>
         {% cycle '' '' '</tr>' %}
