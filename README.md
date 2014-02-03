@@ -12,4 +12,9 @@ Current dependencies:
 
 
 
+License
+=======
 
+MIT
+
+Free as in beer :)
