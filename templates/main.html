@@ -69,7 +69,7 @@
                 <br>
               <div style="text-align:center;">
 		<b>OS:</b> <span class=""></span>{{ getplatform }}<br>
-              	<b>Uptime:</b> <span class="" id="os-uptime"></span>{{ uptime }} Hours<br>
+              	<b>Uptime:</b> <span class="" id="os-uptime"></span> Hours<br>
               	<b>Hostname:</b> <span class=""></span>{{ gethostname }}<br>
 		<b>CPU(s):</b> <span class=""></span>{{ getcpus.cpus }} x {{ getcpus.type }}
               	<br><br>
@@ -272,6 +272,9 @@ var dashboard = {};
 dashboard.getOs = function() {
 	get_os_data('/info/uptime/', "#os-uptime");
 	}
+dashboard.getUser = function() {
+	get_os_data('/info/users/', "#os-users");
+	}
 	
 var mem_ctx = $("#memoryChart").get(0).getContext("2d");
         var memChart = new Chart(mem_ctx);
@@ -303,6 +306,7 @@ var load_ctx = $("#loadChart").get(0).getContext("2d");
             window.setInterval('memory_usage()', {{ time_refresh }});
             window.setInterval('load_average()', {{ time_refresh }});
             window.setInterval('dashboard.getOs()', {{ time_refresh }});
+            window.setInterval('dashboard.getUser()', {{ time_refresh }});
         });
         
 </script>

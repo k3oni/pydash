@@ -25,6 +25,24 @@ def uptime(request):
     response['Content-Type'] = "text/javascript"
     response.write(data)
     return response
+    
+def getusers(request):
+    """
+    Return uptime
+    """
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/login')
+    
+    try:
+	online_users = get_users()
+    except Exception:
+	online_users = None
+	
+    data = simplejson.dumps(online_users)
+    response = HttpResponse()
+    response['Content-Type'] = "text/javascript"
+    response.write(data)
+    return response
 
 def cpuusage(request):
     """

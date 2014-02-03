@@ -196,6 +196,6 @@ def getall(request):
 					    'getcpus': get_cpus(),
 					    'getdisk': get_disk(),
 					    'getip': get_ipaddress(),
-					    'getusers': get_users(),
+					    #'getusers': get_users(),
 					    'time_refresh': time_refresh
 					    }, context_instance=RequestContext(request))

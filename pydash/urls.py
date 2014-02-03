@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^main/$', 'main.views.getall', name='main'),
     url(r'^info/uptime/$', 'usage.views.uptime', name='uptime'),
     url(r'^info/memory/$', 'usage.views.memusage', name='memusage'),
+    url(r'^info/users/$', 'usage.views.getusers', name='getusers'),
     url(r'^info/loadaverage/$', 'usage.views.loadaverage', name='loadaverage')
 )
 

@@ -1,4 +1,4 @@
-<table class="table table-hover table-condensed table-bordered" >
+<table class="table table-hover table-condensed table-bordered">
     <thead>
         <tr>
             <th>User</th>
@@ -6,8 +6,8 @@
             <th>Logged in from</th>
         </tr>
     </thead>
-    <tbody>
-    {% for user in getusers %}
+    <tbody id="os-users">
+    {% for user in online_users %}
         {% cycle '<tr>' '' ''%}
         <td>{{user}}</td>
         {% cycle '' '' '</tr>' %}
