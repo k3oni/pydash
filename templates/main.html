@@ -11,12 +11,13 @@
     <link href="{% static "css/bootstrap-responsive.min.css" %}" rel="stylesheet">
     <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
     <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <link href="{% static "css/odometer.css" %}" rel="stylesheet">
     {% block style %}{% endblock %}
 </head>
 <body>
 <div class="navbar navbar-fixed-top" style="">
     <div class="navbar-inner">
-	<div class="container">
+	<div class="container" id="refresh-home">
             <a class="brand" href="/">pyDash</a>
             <ul class="btn btn-mini">
                 {% if request.user.is_authenticated or user.is_authenticated %}
@@ -25,7 +26,7 @@
                         <a href="{% url 'login' %}">{% trans "Sign in" %}</a>
                 {% endif %}
             </ul>
-            <div class="nav-collapse" id="refresh-home">
+            <div class="nav-collapse">
                         
 	    </div>
         </div>
@@ -67,8 +68,11 @@
             <!-- /widget-header -->
             <div class="widget-content">
                 <br>
-              <div style="text-align:center;" id="general">
-             {% include 'general.html' %}
+              <div style="text-align:center;">
+		<b>OS:</b> <span class=""></span>{{ getplatform }}<br>
+              	<b>Uptime:</b> <span class="" id="os-uptime"></span>{{ uptime }} Hours<br>
+              	<b>Hostname:</b> <span class=""></span>{{ gethostname }}<br>
+              	<br><br>
               </div>
             </div>
             <!-- /widget-content -->
@@ -259,22 +263,21 @@
 <script src="{% static "js/bootstrap.js" %}"></script>
 <script src="{% static "js/jquery.dataTables.min.js" %}"></script>
 <script src="{% static "js/Chart.min.js" %}"></script>
+<script src="{% static "js/odometer.js" %}"></script>
 <script type="text/javascript">
-function refresh() {
-$.ajax({
-  url: '{% url "main" %}',
-  success: function(data) {
-    var dtr = $("#general", data);
-    $('#general').html(dtr);
-        }
-    });
+
+function get_os_data(url, element) {
+    $.get(url, function(data) {
+            $(element).text(data);
+                }, "json");
 }
 
-$(function(){
-    refresh();
-    window.setInterval('refresh()', {{ time_refresh }});    
-});
+var dashboard = {};
 
+dashboard.getOs = function() {
+	get_os_data('/info/uptime/', "#os-uptime");
+	}
+	
 var mem_ctx = $("#memoryChart").get(0).getContext("2d");
         var memChart = new Chart(mem_ctx);
         function memory_usage(){
@@ -304,6 +307,7 @@ var load_ctx = $("#loadChart").get(0).getContext("2d");
         $(function() {
             window.setInterval('memory_usage()', {{ time_refresh }});
             window.setInterval('load_average()', {{ time_refresh }});
+            window.setInterval('dashboard.getOs()', {{ time_refresh }});
         });
         
 </script>

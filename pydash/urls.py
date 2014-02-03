@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'template_name': 'logout.html'}, name='logout'),    
     url(r'^main/$', 'main.views.getall', name='main'),
+    url(r'^info/uptime/$', 'usage.views.uptime', name='uptime'),
     url(r'^info/memory/$', 'usage.views.memusage', name='memusage'),
     url(r'^info/loadaverage/$', 'usage.views.loadaverage', name='loadaverage')
 )

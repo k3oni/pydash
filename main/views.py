@@ -39,7 +39,6 @@ def get_uptime():
     
     except Exception,err: 
 	    data =  str(err)
-	    
 
     return data
 

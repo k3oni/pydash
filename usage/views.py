@@ -8,6 +8,24 @@ from pydash.settings import TIME_JS_REFRESH
 
 time_refresh = TIME_JS_REFRESH
 
+def uptime(request):
+    """
+    Return uptime
+    """
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/login')
+    
+    try:
+	up_time = get_uptime()
+    except Exception:
+	up_time = None
+	
+    data = simplejson.dumps(up_time)
+    response = HttpResponse()
+    response['Content-Type'] = "text/javascript"
+    response.write(data)
+    return response
+
 def cpuusage(request):
     """
     Return CPU Usage in %
