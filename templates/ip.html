@@ -6,9 +6,9 @@
         </tr>
     </thead>
     <tbody>
-    {% for data in getip %}
+    {% for itfip in getip.itfip %}
         {% cycle '<tr>' ''%}
-        <td>{{data}}</td>
+        <td>{{itfip}}</td>
         {% cycle '' '</tr>' %}
     {% endfor %}
     </tbody>

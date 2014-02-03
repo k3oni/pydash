@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}PyDash{% endblock %}</title>
     <link href="{% static "css/fonts.css" %}" rel="stylesheet">
     <link href="{% static "css/font-awesome.css" %}" rel="stylesheet">
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
@@ -175,7 +175,7 @@
           </div>
           <!-- /widget -->
          </div><!-- /span -->
-         
+    
          <div class="span3">
            <div class="widget">
             <div class="widget-header"> <i class="icon-monitor"></i>
@@ -186,8 +186,7 @@
             <!-- /widget-header -->
             <div class="widget-content">
                 <div align="center" style="padding:10px;">
-                    <span class="lead value odometer" style="margin-top:11px;" id="ispeed-rate">0</span>
-                    <span class="lead">Mbps</span>
+                    <span class="lead">{{gettraffic}}</span>
                 </div>
             </div>
             <!-- /widget-content -->

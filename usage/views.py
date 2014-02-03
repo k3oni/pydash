@@ -6,6 +6,8 @@ from django.utils import simplejson
 from main.views import *
 from pydash.settings import TIME_JS_REFRESH
 
+time_refresh = TIME_JS_REFRESH
+
 def cpuusage(request):
     """
     Return CPU Usage in %
@@ -188,3 +190,4 @@ def loadaverage(request):
     response.cookies['load_average'] = datasets
     response.write(data)
     return response
+

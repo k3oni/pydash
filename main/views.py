@@ -81,6 +81,48 @@ def get_ipaddress():
 	data = pipe.read().strip().split()
 	pipe.close()
 
+	data = [n for n in data if not n.startswith(('lo', '127'))] 
+	#x=len(data)
+	    
+	#data1 = list(range(x))
+	
+	#data = dict(zip(data1,data))
+	#data = data1
+	
+	#data = chunks(data, 2)
+	
+	
+	itf = dict(zip(*[iter(data)] * 2))
+	ips = {'interface': itf, 'itfip': data}
+	
+	data = ips
+	
+    except Exception,err: 
+	data =  str(err)
+    
+    return data
+    
+def get_traffic(request):
+    """
+    Get the traffic for the specified interface
+    """
+    try:
+	pipe = os.popen("cat /proc/net/dev |" + "grep " + request +  "| awk {'print $1, $9'}")
+	data = pipe.read().strip().split(':',1)[-1]
+	pipe.close()
+
+	#data = [n for n in data if not n.startswith(('lo'))] 
+	data = data.split()
+	
+	traffic_in = int(data[0])
+	traffic_out = int(data[1])
+	
+	#percent = (100 - ((freemem * 100) / allmem))
+	#usage = (allmem - freemem)
+	
+	all_traffic = {'traffic_in': traffic_in, 'traffic_out': traffic_out}
+	
+	data = all_traffic
 	
     except Exception,err: 
 	data =  str(err)
@@ -108,7 +150,7 @@ def get_disk():
 	#data = commands.getoutput("df -Ph | column -t")
 	pipe = os.popen("df -Ph | " + "grep -v Filesystem | " + "awk '{print $1, $2, $3, $4, $5, $6}'")
 	data = pipe.read().strip().split()
-	pipe.close()	
+	pipe.close()
 	
 	#x=len(data)
 	    
@@ -170,5 +212,6 @@ def getall(request):
 					    'getplatform': get_platform(),
 					    'getdisk': get_disk(),
 					    'getip': get_ipaddress(),
+					    #'gettraffic': get_traffic(),
 					    'time_refresh': time_refresh
 					    }, context_instance=RequestContext(request))

@@ -1862,6 +1862,18 @@ background-repeat:no-repeat;
   line-height: 22px;
   padding: 0 6px;
 }
+
+.btn-mini-select {
+	 -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 11px;
+  line-height: 18px;
+  line-height: 18px;
+  padding: 0 0;
+}
 .btn-primary, .btn-primary:hover, .btn-warning, .btn-warning:hover, .btn-danger, .btn-danger:hover, .btn-success, .btn-success:hover, .btn-info, .btn-info:hover, .btn-inverse, .btn-inverse:hover {
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	color: #ffffff;
