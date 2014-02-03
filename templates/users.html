@@ -1,0 +1,16 @@
+<table class="table table-hover table-condensed table-bordered" >
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>TTY</th>
+            <th>Logged in from</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in getusers %}
+        {% cycle '<tr>' '' ''%}
+        <td>{{user}}</td>
+        {% cycle '' '' '</tr>' %}
+    {% endfor %}
+    </tbody>
+</table>

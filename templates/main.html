@@ -11,7 +11,6 @@
     <link href="{% static "css/bootstrap-responsive.min.css" %}" rel="stylesheet">
     <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
     <link href="{% static "css/style.css" %}" rel="stylesheet">
-    <link href="{% static "css/odometer.css" %}" rel="stylesheet">
     {% block style %}{% endblock %}
 </head>
 <body>
@@ -72,6 +71,7 @@
 		<b>OS:</b> <span class=""></span>{{ getplatform }}<br>
               	<b>Uptime:</b> <span class="" id="os-uptime"></span>{{ uptime }} Hours<br>
               	<b>Hostname:</b> <span class=""></span>{{ gethostname }}<br>
+		<b>CPU(s):</b> <span class=""></span>{{ getcpus.cpus }} x {{ getcpus.type }}
               	<br><br>
               </div>
             </div>
@@ -113,14 +113,13 @@
               </div>
             </div>
             <!-- /widget-header -->
-            <div class="widget-content" id="getdisk">
+            <div class="widget-content">
 		{% include 'disk.html' %}
             </div>
             <!-- /widget-content -->
           </div>
           <!-- /widget -->
          </div>
-         
           <div class="span6">
             <div class="widget widget-table action-table">
             <div class="widget-header"> <i class="icon-bolt"></i>
@@ -208,10 +207,7 @@
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-                
-              <table id="online_dashboard" class="table table-hover table-bordered table-condensed" >
-              </table>
-              
+        	{% include 'users.html' %}    
             </div>
             <!-- /widget-content -->
           </div>
@@ -263,7 +259,6 @@
 <script src="{% static "js/bootstrap.js" %}"></script>
 <script src="{% static "js/jquery.dataTables.min.js" %}"></script>
 <script src="{% static "js/Chart.min.js" %}"></script>
-<script src="{% static "js/odometer.js" %}"></script>
 <script type="text/javascript">
 
 function get_os_data(url, element) {

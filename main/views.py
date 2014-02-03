@@ -1,4 +1,4 @@
-import socket, platform, os
+import socket, platform, os, multiprocessing
 
 from datetime import timedelta
 
@@ -75,7 +75,39 @@ def get_ipaddress():
 	data =  str(err)
     
     return data
+
+def get_cpus():
+    """
+    Get the number of CPUs and model/type
+    """
+    try:
+	pipe = os.popen("cat /proc/cpuinfo |" + "grep 'model name'")
+	data = pipe.read().strip().split(':',2)[-1]
+	pipe.close()
+	
+	cpus = multiprocessing.cpu_count()
+	
+	data = {'cpus': cpus, 'type': data}
+	
+    except Exception, err:
+	data = str(err)
+	
+    return data
     
+def get_users():
+    """
+    Get the current logged in users
+    """
+    try:
+	pipe = os.popen("who |" + "awk '{print $1, $2, $6}'")
+	data = pipe.read().strip().split()
+	pipe.close()
+
+    except Exception, err:
+	data = str(err)
+    
+    return data
+	
 def get_traffic(request):
     """
     Get the traffic for the specified interface
@@ -161,7 +193,9 @@ def getall(request):
     return render_to_response('main.html', {'getuptime': get_uptime(), 
 					    'gethostname': get_hostname(),
 					    'getplatform': get_platform(),
+					    'getcpus': get_cpus(),
 					    'getdisk': get_disk(),
 					    'getip': get_ipaddress(),
+					    'getusers': get_users(),
 					    'time_refresh': time_refresh
 					    }, context_instance=RequestContext(request))
