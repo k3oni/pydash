@@ -178,21 +178,50 @@ def get_mem():
     
     return data
     
+#def getcpu_usage():
+#    try:
+#	pipe = os.popen("ps aux |" + "awk {'sum+=$3;print sum'} |" + "tail -n 1")
+#	data = pipe.read().strip()
+#	pipe.close()
+
+#	cpu_free = (100 - float(data))
+#	cpu_used = {'free': cpu_free, 'used': float(data)}
+#	data = cpu_used
+	
+#    except Exception,err:
+#	data = str(err)
+#
+#    return data
+    
+
 def get_cpu_usage():
     try:
-	pipe = os.popen("ps aux |" + "awk {'sum+=$3;print sum'} |" + "tail -n 1")
-	data = pipe.read().strip()
+	pipe = os.popen("ps aux --sort -%cpu,-rss")
+	data = pipe.read().strip().split('\n')
 	pipe.close()
-
-	cpu_free = (100 - float(data))
-	cpu_used = {'free': cpu_free, 'used': float(data)}
+	
+	usage = [i.split(None, 10) for i in data]
+	del usage[0]
+	
+	total_usage = []
+	
+	for element in usage:
+	    usage_cpu = element[2]
+	    total_usage.append(usage_cpu)
+	
+	#del total_usage[0]
+	total_usage = sum(float(i) for i in total_usage)
+	
+	total_free = (100 - float(total_usage))
+	
+	cpu_used = {'free': total_free, 'used': float(total_usage), 'all': usage}
+	
 	data = cpu_used
 	
     except Exception,err:
 	data = str(err)
 
     return data
-    
 
 def get_load():
     try:
@@ -214,5 +243,6 @@ def getall(request):
 					    'getip': get_ipaddress(),
 					    'gettraffic': get_traffic('eth0'),
 					    'getusers': get_users(),
+					    'getcpuusage': get_cpu_usage(),
 					    'time_refresh': time_refresh
 					    }, context_instance=RequestContext(request))

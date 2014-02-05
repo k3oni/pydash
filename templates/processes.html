@@ -1,0 +1,26 @@
+<table class="table table-hover table-condensed table-bordered">
+    <thead>
+	<tr>
+	    <th>User</th>
+            <th>Pid</th>
+            <th>%Cpu</th>
+            <th>%Mem</th>
+            <th>Vsz</th>
+            <th>Rss</th>
+            <th>Tty</th>
+            <th>Stat</th>
+            <th>Start</th>
+            <th>Time</th>
+            <th>Command</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for data in getcpuusage.all %}
+	{% for line in data %}
+	    {% cycle '<tr>' '' '' '' '' '' '' '' '' '' ''%}
+    		<td>{{line}}</td>
+    	    {% cycle '' '' '' '' '' '' '' '' '' '' '</tr>' %}
+        {% endfor %}
+    {% endfor %}
+    </tbody>
+</table>
