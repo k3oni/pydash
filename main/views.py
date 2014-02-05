@@ -106,6 +106,9 @@ def get_users():
     except Exception, err:
 	data = str(err)
     
+    if not data:
+	data = ['No data available']
+    
     return data
 	
 def get_traffic(request):
