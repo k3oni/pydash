@@ -178,22 +178,6 @@ def get_mem():
     
     return data
     
-#def getcpu_usage():
-#    try:
-#	pipe = os.popen("ps aux |" + "awk {'sum+=$3;print sum'} |" + "tail -n 1")
-#	data = pipe.read().strip()
-#	pipe.close()
-
-#	cpu_free = (100 - float(data))
-#	cpu_used = {'free': cpu_free, 'used': float(data)}
-#	data = cpu_used
-	
-#    except Exception,err:
-#	data = str(err)
-#
-#    return data
-    
-
 def get_cpu_usage():
     try:
 	pipe = os.popen("ps aux --sort -%cpu,-rss")
