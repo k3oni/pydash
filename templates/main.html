@@ -55,7 +55,7 @@
         
      <div class="row">
         
-        <div class="span6">
+        <div class="span3">
          <div class="widget widget-table action-table">
             <div class="widget-header"> <i class="icon-info-sign"></i>
               <h3>General Info</h3>
@@ -74,6 +74,24 @@
 		<b>CPU(s):</b> <span class=""></span>{{ getcpus.cpus }} x {{ getcpus.type }}
               	<br><br>
               </div>
+            </div>
+            <!-- /widget-content -->
+          </div>
+          <!-- /widget -->
+        </div>
+        
+        <div class="span3">
+         <div class="widget widget-table action-table">
+            <div class="widget-header"> <i class="icon-info-sign"></i>
+              <h3>CPU Usage %</h3>
+              <div id="refresh-cpu">
+                
+              </div>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+        	<p></p>
+                <canvas id="cpuuChart" width="250" height="230"></canvas>
             </div>
             <!-- /widget-content -->
           </div>
@@ -156,6 +174,7 @@
             <div class="widget-content">
                 
               <table id="whereis_dashboard" class="table table-hover table-condensed table-bordered" >
+              
               </table>
             </div>
             <!-- /widget-content -->
@@ -288,6 +307,19 @@ var mem_ctx = $("#memoryChart").get(0).getContext("2d");
                 memChart.Line(data, options);
             });
         }
+        
+	
+var cpu_ctx = $("#cpuuChart").get(0).getContext("2d");
+        var cpuChart = new Chart(cpu_ctx);
+        function cpuu_usage(){
+            $.getJSON('/info/cpuusage/{{ cpuusage }}', function(data) {
+                var options = {
+            	    percentageInnerCutout : 50,
+            	    segmentStrokeWidth : 1
+                }
+                cpuChart.Doughnut(data, options);
+            });
+        }
 
 var load_ctx = $("#loadChart").get(0).getContext("2d");
         var loadChart = new Chart(load_ctx);
@@ -306,6 +338,7 @@ var load_ctx = $("#loadChart").get(0).getContext("2d");
             window.setInterval('memory_usage()', {{ time_refresh }});
             window.setInterval('load_average()', {{ time_refresh }});
             window.setInterval('dashboard.getOs()', {{ time_refresh }});
+            window.setInterval('cpuu_usage()', {{ time_refresh }});
         });
         
 </script>

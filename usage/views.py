@@ -51,57 +51,26 @@ def cpuusage(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login')
 
-    datasets = []
-
     try:
         cpu_usage = get_cpu_usage()
+        
     except Exception:
         cpu_usage = 0
-
-    try:
-        cookies = request._cookies['cpu_usage']
-    except Exception:
-        cookies = None
-
-    if not cookies:
-        datasets.append(0)
-    else:
-        datasets = eval(cookies)
-    if len(datasets) > 10:
-        while datasets:
-            del datasets[0]
-            if len(datasets) == 10:
-                break
-    if len(datasets) <= 9:
-        datasets.append(int(cpu_usage['usage']))
-    if len(datasets) == 10:
-        datasets.append(int(cpu_usage['usage']))
-        del datasets[0]
-
-    # Some fix division by 0 Chart.js
-    if len(datasets) == 10:
-        if sum(datasets) == 0:
-            datasets[9] += 0.1
-        if sum(datasets) / 10 == datasets[0]:
-            datasets[9] += 0.1
-
-    cpu = {
-        'labels': [""] * 10,
-        'datasets': [
-            {
-                "fillColor": "rgba(241,72,70,0.5)",
-                "strokeColor": "rgba(241,72,70,1)",
-                "pointColor": "rgba(241,72,70,1)",
-                "pointStrokeColor": "#fff",
-                "data": datasets
-            }
-        ]
-    }
+    
+    cpu = [
+	    {   	    
+        	"value": cpu_usage['free'],
+        	"color": "#0AD11B"
+    	    },
+    	    {
+    		"value": cpu_usage['used'],
+            	"color": "#F7464A"
+    	    }
+	]
 
     data = simplejson.dumps(cpu)
     response = HttpResponse()
     response['Content-Type'] = "text/javascript"
-    response.cookies['cpu_usage'] = datasets
     response.write(data)
     return response
 
@@ -226,4 +195,3 @@ def loadaverage(request):
     response.cookies['load_average'] = datasets
     response.write(data)
     return response
-
