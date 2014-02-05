@@ -11,6 +11,7 @@
     <link href="{% static "css/bootstrap-responsive.min.css" %}" rel="stylesheet">
     <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
     <link href="{% static "css/style.css" %}" rel="stylesheet">
+
     {% block style %}{% endblock %}
 </head>
 <body>
@@ -245,6 +246,9 @@
 <script src="{% static "js/bootstrap.js" %}"></script>
 <script src="{% static "js/jquery.dataTables.min.js" %}"></script>
 <script src="{% static "js/Chart.min.js" %}"></script>
+<!--[if lte IE 8]>
+    <script src="{% static "js/excanvas.js" %}"></script>
+<![endif]-->
 <script type="text/javascript">
 
 function get_os_data(url, element) {
