@@ -91,7 +91,7 @@
             <!-- /widget-header -->
             <div class="widget-content">
         	<p></p>
-                <canvas id="cpuuChart" width="250" height="230"></canvas>
+                <canvas id="cpuuChart" width="270" height="230"></canvas>
             </div>
             <!-- /widget-content -->
           </div>
@@ -163,25 +163,21 @@
     
     
       <div class="row">
-         <div class="span6">
-           <div class="widget">
-            <div class="widget-header"> <i class="icon-list"></i>
-              <h3>Software</h3>
-              <div id="refresh-whereis">
+        <div class="span6">
+         <div class="widget widget-table action-table">
+            <div class="widget-header"> <i class="icon-group"></i>
+              <h3>Online</h3>
+              <div id="refresh-online">
               </div>
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-                
-              <table id="whereis_dashboard" class="table table-hover table-condensed table-bordered" >
-              
-              </table>
+        	{% include 'users.html' %}    
             </div>
             <!-- /widget-content -->
           </div>
           <!-- /widget -->
-         </div><!-- /span -->
-         
+         </div>
          <div class="span3">
            <div class="widget widget-table action-table">
             <div class="widget-header"> <i class="icon-monitor"></i>
@@ -217,21 +213,6 @@
          </div><!-- /span -->
          
 	<!-- online users widget (breaks DOM pattern) -->
-	<div class="span6 pull-right">
-	<div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-group"></i>
-              <h3>Online</h3>
-              <div id="refresh-online">
-              </div>
-            </div>
-            <!-- /widget-header -->
-            <div class="widget-content">
-        	{% include 'users.html' %}    
-            </div>
-            <!-- /widget-content -->
-          </div>
-          <!-- /widget -->
-	</div><!-- /span6 -->
       </div>
       <!-- /row -->
 
@@ -315,7 +296,7 @@ var cpu_ctx = $("#cpuuChart").get(0).getContext("2d");
             $.getJSON('/info/cpuusage/{{ cpuusage }}', function(data) {
                 var options = {
             	    percentageInnerCutout : 50,
-            	    segmentStrokeWidth : 1
+            	    segmentStrokeWidth : 0
                 }
                 cpuChart.Doughnut(data, options);
             });
