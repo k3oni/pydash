@@ -43,6 +43,24 @@ def getdisk(request):
     response['Content-Type'] = "text/javascript"
     response.write(data)
     return response
+    
+def getusers(request):
+    """
+    Return the online users
+    """
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/login')
+    
+    try:
+	getusers = get_users()
+    except Exception:
+	getusers = None
+	
+    data = simplejson.dumps(getusers)
+    response = HttpResponse()
+    response['Content-Type'] = "text/javascript"
+    response.write(data)
+    return response
 
     
 def getusers(request):

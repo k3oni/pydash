@@ -100,8 +100,10 @@ def get_users():
     """
     try:
 	pipe = os.popen("who |" + "awk '{print $1, $2, $6}'")
-	data = pipe.read().strip().split()
+	data = pipe.read().strip().split('\n')
 	pipe.close()
+
+	data = [i.split(None, 3) for i in data]
 
     except Exception, err:
 	data = str(err)
@@ -231,7 +233,7 @@ def getall(request):
 					    #'getdisk': get_disk(),
 					    'getip': get_ipaddress(),
 					    'gettraffic': get_traffic('eth0'),
-					    'getusers': get_users(),
+					    #'getusers': get_users(),
 					    'getcpuusage': get_cpu_usage(),
 					    'time_refresh': time_refresh
 					    }, context_instance=RequestContext(request))
