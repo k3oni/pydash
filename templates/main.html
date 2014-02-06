@@ -127,7 +127,20 @@
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-		{% include 'disk.html' %}
+		<table class="table table-hover table-condensed table-bordered" >
+    		    <thead>
+        		<tr>
+        		    <th>Filesystem</th>
+        		    <th>Size</th>
+        		    <th>Used</th>
+        		    <th>Avail</th>
+        		    <th>Use %</th>
+        		    <th>Mounted</th>
+    			</tr>
+		    </thead>
+		    <tbody id="get-disk">
+		    </tbody>
+		</table>
             </div>
             <!-- /widget-content -->
           </div>
