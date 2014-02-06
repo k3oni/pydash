@@ -260,9 +260,16 @@ var dashboard = {};
 dashboard.getOs = function() {
 	get_os_data('/info/uptime/', "#os-uptime");
 	}
-dashboard.getUser = function() {
-	get_os_data('/info/users/', "#os-users");
-	}
+dashboard.getDisk = function() {
+	$.getJSON('/info/getdisk/{{ getdisk }}', function(data) {
+	    var tr='';
+	    $.each( data, function( index, item){
+		tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td><td>'+item[2]+'</td><td>'+item[3]+'</td><td>'+item[4]+'</td><td>'+item[5]+'</td></tr>';
+		})
+	    tr+='';
+	    $("#get-disk").html( tr );
+	});
+    }
 	
 var mem_ctx = $("#memoryChart").get(0).getContext("2d");
         var memChart = new Chart(mem_ctx);
@@ -307,6 +314,7 @@ var load_ctx = $("#loadChart").get(0).getContext("2d");
             window.setInterval('memory_usage()', {{ time_refresh }});
             window.setInterval('load_average()', {{ time_refresh }});
             window.setInterval('dashboard.getOs()', {{ time_refresh }});
+            window.setInterval('dashboard.getDisk()', {{ time_refresh }});
             window.setInterval('cpuu_usage()', {{ time_refresh }});
         });
         

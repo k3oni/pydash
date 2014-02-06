@@ -152,9 +152,11 @@ def get_disk():
     """
     try:
 	pipe = os.popen("df -Ph | " + "grep -v Filesystem | " + "awk '{print $1, $2, $3, $4, $5, $6}'")
-	data = pipe.read().strip().split()
+	data = pipe.read().strip().split('\n')
 	pipe.close()
 	
+	data = [i.split(None, 6) for i in data]
+
     except Exception,err: 
 	data =  str(err)
     
@@ -226,7 +228,7 @@ def getall(request):
 					    'gethostname': get_hostname(),
 					    'getplatform': get_platform(),
 					    'getcpus': get_cpus(),
-					    'getdisk': get_disk(),
+					    #'getdisk': get_disk(),
 					    'getip': get_ipaddress(),
 					    'gettraffic': get_traffic('eth0'),
 					    'getusers': get_users(),

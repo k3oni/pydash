@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^info/memory/$', 'usage.views.memusage', name='memusage'),
     url(r'^info/users/$', 'usage.views.getusers', name='getusers'),
     url(r'^info/cpuusage/$', 'usage.views.cpuusage', name='cpuusage'),
+    url(r'^info/getdisk/$', 'usage.views.getdisk', name='getdisk'),
     url(r'^info/loadaverage/$', 'usage.views.loadaverage', name='loadaverage')
 )
 

@@ -25,6 +25,25 @@ def uptime(request):
     response['Content-Type'] = "text/javascript"
     response.write(data)
     return response
+
+def getdisk(request):
+    """
+    Return the disk usage
+    """
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/login')
+    
+    try:
+	getdisk = get_disk()
+    except Exception:
+	getdisk = None
+	
+    data = simplejson.dumps(getdisk)
+    response = HttpResponse()
+    response['Content-Type'] = "text/javascript"
+    response.write(data)
+    return response
+
     
 def getusers(request):
     """
