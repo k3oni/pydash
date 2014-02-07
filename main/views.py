@@ -234,15 +234,9 @@ def getall(request):
     if not request.user.is_authenticated():
 	return HttpResponseRedirect('/login')
 	
-    return render_to_response('main.html', {#'getuptime': get_uptime(), 
-					    'gethostname': get_hostname(),
+    return render_to_response('main.html', {'gethostname': get_hostname(),
 					    'getplatform': get_platform(),
 					    'getcpus': get_cpus(),
-					    #'getdisk': get_disk(),
-					    #'getip': get_ipaddress(),
-					    #'gettraffic': get_traffic('eth0'),
-					    #'getusers': get_users(),
-					    #'getcpuusage': get_cpu_usage(),
 					    'time_refresh': time_refresh,
 					    'time_refresh_long': time_refresh_long,
 					    'time_refresh_net': time_refresh_net
