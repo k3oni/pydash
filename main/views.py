@@ -62,12 +62,14 @@ def get_ipaddress():
     """
     try:
 	pipe = os.popen("/sbin/ifconfig |" + "grep -B1 'inet addr' |" + "awk '{ if ( $1 == \"inet\" ) { print $2 } else if ( $2 == \"Link\" ) { printf \"%s:\",$1 } }' |" + "awk -F: '{ print $1, $3 }'")
-	data = pipe.read().strip().split()
+	data = pipe.read().strip().split('\n')
 	pipe.close()
 
 	data = [n for n in data if not n.startswith(('lo', '127'))] 
 	
 	itf = dict(zip(*[iter(data)] * 2))
+	data = [i.split(None, 2) for i in data]
+	
 	ips = {'interface': itf, 'itfip': data}
 	
 	data = ips
@@ -119,7 +121,7 @@ def get_traffic(request):
     Get the traffic for the specified interface
     """
     try:
-	pipe = os.popen("cat /proc/net/dev |" + "grep " + request +  "| awk {'print $1, $9'}")
+	pipe = os.popen("cat /proc/net/dev |" + "grep " + request +  "| awk '{print $2, $10}'")
 	data = pipe.read().strip().split(':',1)[-1]
 	pipe.close()
 
@@ -232,8 +234,8 @@ def getall(request):
 					    'getplatform': get_platform(),
 					    'getcpus': get_cpus(),
 					    #'getdisk': get_disk(),
-					    'getip': get_ipaddress(),
-					    'gettraffic': get_traffic('eth0'),
+					    #'getip': get_ipaddress(),
+					    #'gettraffic': get_traffic('eth0'),
 					    #'getusers': get_users(),
 					    'getcpuusage': get_cpu_usage(),
 					    'time_refresh': time_refresh,

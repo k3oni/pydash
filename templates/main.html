@@ -91,6 +91,10 @@
             <div class="widget-content">
         	<p></p>
                 <canvas id="cpuuChart" width="270" height="200"></canvas>
+                <div>
+        	    <span class="cpuf">{% trans "Free" %}</span>
+        	    <span class="cpuu">{% trans "Used" %}</span>
+    		</div>
             </div>
             <!-- /widget-content -->
           </div>
@@ -212,16 +216,20 @@
          <div class="span3">
            <div class="widget">
             <div class="widget-header"> <i class="icon-monitor"></i>
-              <h3>Internet Speed</h3>
+              <h3>Internet Traffic</h3>
               <div id="refresh-ispeed">
               </div>
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-                <div align="center" style="padding:10px;">
-                    <span class="lead">{{gettraffic}}</span>
-                </div>
+        	<p></p>
+                <canvas id="trfChart" width="250" height="200"></canvas>
+                <div>
+        	    <span class="netin">{% trans "In" %}</span>
+        	    <span class="netout">{% trans "Out" %}</span>
+    		</div>
             </div>
+            
             <!-- /widget-content -->
           </div>
           <!-- /widget -->
@@ -303,6 +311,16 @@ dashboard.getUsers = function() {
 	    $("#get-users").html( tr );
 	});
     }
+dashboard.getIps = function() {
+	$.getJSON('/info/getips/{{ getips }}', function(data) {
+	    var tr='';
+	    $.each( data, function( index, item){
+		tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td></tr>';
+		})
+	    tr+='';
+	    $("#get-ips").html( tr );
+	});
+    }
 	
 	
 var mem_ctx = $("#memoryChart").get(0).getContext("2d");
@@ -331,6 +349,19 @@ var cpu_ctx = $("#cpuuChart").get(0).getContext("2d");
             });
         }
 
+var trf_ctx = $("#trfChart").get(0).getContext("2d");
+        var trfChart = new Chart(trf_ctx);
+        function traffic_usage(){
+            $.getJSON('/info/gettraffic/', function(data) {
+                var options = {
+            	    animation : false,
+                    pointDotRadius : 2,
+                    scaleLabel : "<%=value%> Kb"
+                }
+                trfChart.Line(data, options);
+            });
+        }
+
 var load_ctx = $("#loadChart").get(0).getContext("2d");
         var loadChart = new Chart(load_ctx);
         function load_average(){
@@ -351,15 +382,18 @@ var load_ctx = $("#loadChart").get(0).getContext("2d");
             window.setInterval('dashboard.getDisk()', {{ time_refresh_long }});
             window.setInterval('dashboard.getUsers()', {{ time_refresh_long }});
             window.setInterval('cpuu_usage()', {{ time_refresh }});
+            window.setInterval('traffic_usage()', 1000);
         });
 
 $(function pageLoad() {
     memory_usage();
     load_average();
     cpuu_usage();
+    traffic_usage();
     dashboard.getUptime();
     dashboard.getDisk();
     dashboard.getUsers();
+    dashboard.getIps();
     });
 
 </script>

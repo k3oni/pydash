@@ -355,3 +355,37 @@ h6.bigstats {
 .dataTables_paginate a:hover{ pointer:pointer;}
 .navbar-fixed-top{  margin-left:0px;}
 .widget-search{display: inline-block; vertical-align: middle; margin: 0 6px; width: 200px;}
+
+.netin {
+    border-color: rgb(105,210,231);
+    margin: 0.5em;
+    border-style: solid;
+    border-width: 0 0 0 1em;
+    padding: 0 0.3em;
+    border-style: solid;
+}
+.netout {
+    border-color: rgb(227,48,81);
+    margin: 0.5em;
+    border-style: solid;
+    border-width: 0 0 0 1em;
+    padding: 0 0.3em;
+    border-style: solid;
+}
+.cpuu {
+    border-color: rgb(247,70,74);
+    margin: 0.5em;
+    border-style: solid;
+    border-width: 0 0 0 1em;
+    padding: 0 0.3em;
+    border-style: solid;
+}
+.cpuf {
+    border-color: rgb(10,209,27);
+    margin: 0.5em;
+    border-style: solid;
+    border-width: 0 0 0 1em;
+    padding: 0 0.3em;
+    border-style: solid;
+}
+

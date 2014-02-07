@@ -20,6 +20,8 @@ urlpatterns = patterns('',
     url(r'^info/cpuusage/$', 'usage.views.cpuusage', name='cpuusage'),
     url(r'^info/getdisk/$', 'usage.views.getdisk', name='getdisk'),
     url(r'^info/getusers/$', 'usage.views.getusers', name='getusers'),
+    url(r'^info/getips/$', 'usage.views.getips', name='getips'),
+    url(r'^info/gettraffic/$', 'usage.views.gettraffic', name='gettraffic'),
     url(r'^info/loadaverage/$', 'usage.views.loadaverage', name='loadaverage')
 )
 

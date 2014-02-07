@@ -5,12 +5,7 @@
             <th>IP</th>
         </tr>
     </thead>
-    <tbody>
-    {% for itfip in getip.itfip %}
-        {% cycle '<tr>' ''%}
-        <td>{{itfip}}</td>
-        {% cycle '' '</tr>' %}
-    {% endfor %}
+    <tbody id="get-ips">
     </tbody>
 </table>
 
