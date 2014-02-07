@@ -9,8 +9,8 @@
     <link href="{% static "css/font-awesome.css" %}" rel="stylesheet">
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
     <link href="{% static "css/bootstrap-responsive.min.css" %}" rel="stylesheet">
-    <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
     <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
 
     {% block style %}{% endblock %}
 </head>
@@ -202,13 +202,22 @@
          <div class="span3">
            <div class="widget widget-table action-table">
             <div class="widget-header"> <i class="icon-monitor"></i>
-              <h3>IP</h3>
+              <h3>IP Adresses</h3>
               <div id="refresh-ip">
               </div>
             </div>
             <!-- /widget-header -->
-            <div class="widget-content" id="getip">
-		{% include 'ip.html' %}
+            <div class="widget-content">
+		<table class="table table-hover table-condensed table-bordered">
+		    <thead>
+    			<tr>
+        		    <th>Interface</th>
+        		    <th>IP</th>
+    			</tr>
+		    </thead>
+		    <tbody id="get-ips">
+		    </tbody>
+		</table>
             </div>
             <!-- /widget-content -->
           </div>
@@ -248,13 +257,28 @@
               <h3> Processes </h3>
               <div id="refresh-ps">
               </div>
-		<div class="pull-right">
-                <input type="text" id="filter-ps" class="widget-search" placeholder="search..." />
-              </div>
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-		{% include 'processes.html' %}                
+		<table class="table table-hover table-condensed table-bordered">
+		    <thead>
+    			<tr>
+        		    <th>User</th>
+		            <th>Pid</th>
+		            <th>%Cpu</th>
+		            <th>%Mem</th>
+		            <th>Vsz</th>
+		            <th>Rss</th>
+		            <th>Tty</th>
+		            <th>Stat</th>
+		            <th>Start</th>
+		            <th>Time</th>
+		            <th>Command</th>
+		        </tr>
+		    </thead>
+		    <tbody id="get-proc">
+		    </tbody>
+		</table>
             </div>
             <!-- /widget-content -->
           </div>
@@ -269,6 +293,22 @@
     <!-- /main-inner -->
  </div>  
 <!-- /main -->	    
+
+<div class="footer">
+  <div class="footer-inner">
+    <div class="container">
+      <div class="row">
+        <div class="span6"> by <a href="http://github.com/k3oni">Florian Neagu</a>, template by <a href="http://www.egrappler.com/templatevamp-free-twitter-bootstrap-admin-template/" target="_blank">EGrappler</a> </div>
+        <!-- /span12 --> 
+      </div>
+      <!-- /row --> 
+    </div>
+    <!-- /container --> 
+  </div>
+  <!-- /footer-inner --> 
+</div>
+<!-- /footer --> 
+
 {% endblock %}
 
 {% block script %}
@@ -313,6 +353,16 @@ dashboard.getUsers = function() {
 	    $("#get-users").html( tr );
 	});
     }
+dashboard.getProc = function() {
+	$.getJSON('/info/proc/', function(data) {
+	    var tr='';
+	    $.each( data, function( index, item){
+		tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td><td>'+item[2]+'</td><td>'+item[3]+'</td><td>'+item[4]+'</td><td>'+item[5]+'</td><td>'+item[6]+'</td><td>'+item[7]+'</td><td>'+item[8]+'</td><td>'+item[9]+'</td><td>'+item[10]+'</td></tr>';
+		})
+	    tr+='';
+	    $("#get-proc").html( tr );
+	});
+    }
 dashboard.getIps = function() {
 	$.getJSON('/info/getips/{{ getips }}', function(data) {
 	    var tr='';
@@ -338,7 +388,6 @@ var mem_ctx = $("#memoryChart").get(0).getContext("2d");
             });
         }
         
-	
 var cpu_ctx = $("#cpuuChart").get(0).getContext("2d");
         var cpuChart = new Chart(cpu_ctx);
         function cpuu_usage(){
@@ -380,11 +429,12 @@ var load_ctx = $("#loadChart").get(0).getContext("2d");
         $(function() {
             window.setInterval('memory_usage()', {{ time_refresh }});
             window.setInterval('load_average()', {{ time_refresh }});
+            window.setInterval('cpuu_usage()', {{ time_refresh }});
+            window.setInterval('traffic_usage()', {{ time_refresh_net }});
             window.setInterval('dashboard.getUptime()', {{ time_refresh_long }});
             window.setInterval('dashboard.getDisk()', {{ time_refresh_long }});
             window.setInterval('dashboard.getUsers()', {{ time_refresh_long }});
-            window.setInterval('cpuu_usage()', {{ time_refresh }});
-            window.setInterval('traffic_usage()', {{ time_refresh_net }});
+            window.setInterval('dashboard.getProc()', {{ time_refresh_long }});
         });
 
 $(function pageLoad() {
@@ -396,6 +446,7 @@ $(function pageLoad() {
     dashboard.getDisk();
     dashboard.getUsers();
     dashboard.getIps();
+    dashboard.getProc();
     });
 
 </script>

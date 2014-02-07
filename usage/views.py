@@ -82,6 +82,25 @@ def getusers(request):
     response['Content-Type'] = "text/javascript"
     response.write(data)
     return response
+    
+def getproc(request):
+    """
+    Return uptime
+    """
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/login')
+    
+    try:
+	processes = get_cpu_usage()
+	processes = processes['all']
+    except Exception:
+	processes = None
+	
+    data = simplejson.dumps(processes)
+    response = HttpResponse()
+    response['Content-Type'] = "text/javascript"
+    response.write(data)
+    return response
 
 def cpuusage(request):
     """

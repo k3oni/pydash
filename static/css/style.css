@@ -320,16 +320,16 @@ textarea {
 	padding: 15px 0;
 	
 	font-size: 12px;
-	background: #111;
-	color: #999;
+	background: #515254;
+	color: #999fff;
 }
 
 .footer a {
-	color: #999;
+	color: #FFF;
 }
 
 .footer a:hover {
-	color: #FFF;
+	color: #000;
 	text-decoration: none;
 }
 
