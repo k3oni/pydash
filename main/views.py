@@ -8,10 +8,11 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.utils import simplejson
-from pydash.settings import TIME_JS_REFRESH, TIME_JS_REFRESH_LONG
+from pydash.settings import TIME_JS_REFRESH, TIME_JS_REFRESH_LONG, TIME_JS_REFRESH_NET
 
 time_refresh = TIME_JS_REFRESH
 time_refresh_long = TIME_JS_REFRESH_LONG
+time_refresh_net = TIME_JS_REFRESH_NET
 
 def index(request):
     """
@@ -239,5 +240,6 @@ def getall(request):
 					    #'getusers': get_users(),
 					    'getcpuusage': get_cpu_usage(),
 					    'time_refresh': time_refresh,
-					    'time_refresh_long': time_refresh_long
+					    'time_refresh_long': time_refresh_long,
+					    'time_refresh_net': time_refresh_net
 					    }, context_instance=RequestContext(request))

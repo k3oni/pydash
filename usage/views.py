@@ -4,10 +4,11 @@ from django.template import RequestContext
 from django.utils import simplejson
 
 from main.views import *
-from pydash.settings import TIME_JS_REFRESH, TIME_JS_REFRESH_LONG
+from pydash.settings import TIME_JS_REFRESH, TIME_JS_REFRESH_LONG, TIME_JS_REFRESH_NET
 
 time_refresh = TIME_JS_REFRESH
 time_refresh_long = TIME_JS_REFRESH_LONG
+time_refresh_net = TIME_JS_REFRESH_NET
 
 def uptime(request):
     """
@@ -304,14 +305,14 @@ def gettraffic(request):
         del datasets_out_o[0]
 
     if len(datasets_in) <= 9:
-        datasets_in.append(float(((datasets_in_i[1] - datasets_in_i[0]) / 1024 ) / ( time_refresh / 1000 )))
+        datasets_in.append(float(((datasets_in_i[1] - datasets_in_i[0]) / 1024 ) / ( time_refresh_net / 1000 )))
     if len(datasets_in) == 10:
-        datasets_in.append(float(((datasets_in_i[1] - datasets_in_i[0]) / 1024 ) / ( time_refresh / 1000 )))
+        datasets_in.append(float(((datasets_in_i[1] - datasets_in_i[0]) / 1024 ) / ( time_refresh_net / 1000 )))
         del datasets_in[0]
     if len(datasets_out) <= 9:
-        datasets_out.append(float(((datasets_out_o[1] - datasets_out_o[0]) / 1024 ) / ( time_refresh / 1000 )))
+        datasets_out.append(float(((datasets_out_o[1] - datasets_out_o[0]) / 1024 ) / ( time_refresh_net / 1000 )))
     if len(datasets_out) == 10:
-        datasets_out.append(float(((datasets_out_o[1] - datasets_out_o[0]) / 1024 ) / ( time_refresh / 1000 )))
+        datasets_out.append(float(((datasets_out_o[1] - datasets_out_o[0]) / 1024 ) / ( time_refresh_net / 1000 )))
         del datasets_out[0]
 
 

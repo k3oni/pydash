@@ -382,7 +382,7 @@ var load_ctx = $("#loadChart").get(0).getContext("2d");
             window.setInterval('dashboard.getDisk()', {{ time_refresh_long }});
             window.setInterval('dashboard.getUsers()', {{ time_refresh_long }});
             window.setInterval('cpuu_usage()', {{ time_refresh }});
-            window.setInterval('traffic_usage()', {{ time_refresh }});
+            window.setInterval('traffic_usage()', {{ time_refresh_net }});
         });
 
 $(function pageLoad() {
