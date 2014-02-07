@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>{% block title %}PyDash{% endblock %}</title>
-    <link href="{% static "css/fonts.css" %}" rel="stylesheet">
-    <link href="{% static "css/font-awesome.css" %}" rel="stylesheet">
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
     <link href="{% static "css/bootstrap-responsive.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/fonts.css" %}" rel="stylesheet">
+    <link href="{% static "css/font-awesome.css" %}" rel="stylesheet">
     <link href="{% static "css/style.css" %}" rel="stylesheet">
     <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
 
@@ -17,7 +17,7 @@
 <body>
 <div class="navbar navbar-fixed-top" style="">
     <div class="navbar-inner">
-	<div class="container" id="refresh-home">
+	<div class="container">
             <a class="brand" href="/">pyDash</a>
             <ul class="btn btn-mini">
                 {% if request.user.is_authenticated or user.is_authenticated %}
@@ -43,7 +43,7 @@
             <li><a href="#refresh-online"><i class="icon-user"></i><span>Users</span> </a> </li>
     	    <li><a href="#refresh-ispeed"><i class="icon-exchange"></i><span>Network</span> </a> </li>
     	    <li><a href="#refresh-ps"><i class="icon-list-alt"></i><span>Processes</span> </a> </li>
-    	    <li><a href="#refresh-home"><i class="icon-home"></i><span>Home</span> </a> </li>
+    	    <li></li>
 	</ul>
       </div>
       <!-- /container --> 
@@ -298,7 +298,7 @@
   <div class="footer-inner">
     <div class="container">
       <div class="row">
-        <div class="span6"> by <a href="http://github.com/k3oni">Florian Neagu</a>, template by <a href="http://www.egrappler.com/templatevamp-free-twitter-bootstrap-admin-template/" target="_blank">EGrappler</a> </div>
+        <div class="span6">&copy; 2014 by <a href="http://github.com/k3oni">Florian Neagu</a>, template by <a href="http://www.egrappler.com/templatevamp-free-twitter-bootstrap-admin-template/" target="_blank">EGrappler</a> </div>
         <!-- /span12 --> 
       </div>
       <!-- /row --> 
@@ -313,9 +313,8 @@
 
 {% block script %}
 <script src="{% static "js/jquery.js" %}"></script>
-<script src="{% static "js/base.js" %}"></script>
 <script src="{% static "js/bootstrap.js" %}"></script>
-<script src="{% static "js/jquery.dataTables.min.js" %}"></script>
+<script src="{% static "js/base.js" %}"></script>
 <script src="{% static "js/Chart.min.js" %}"></script>
 <!--[if lte IE 8]>
     <script src="{% static "js/excanvas.js" %}"></script>
