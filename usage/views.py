@@ -251,7 +251,10 @@ def gettraffic(request):
     cookie_traffic = {}
 
     try:
-        traffic = get_traffic('eth0')
+	intf = get_ipaddress()
+	intf = intf['interface'][0]
+	
+        traffic = get_traffic(intf)
     except Exception:
         traffic = 0
 
