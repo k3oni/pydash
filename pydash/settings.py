@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '1)$crmowu-23tz@i2-d=7tb3t+1u&(pm!lnjyuarki^72h!3af'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
@@ -33,6 +33,7 @@ MANAGERS = ADMINS
 TIME_JS_REFRESH = 30000
 TIME_JS_REFRESH_LONG = 120000
 TIME_JS_REFRESH_NET = 2000
+
 VERSION = 1.0
 
 ALLOWED_HOSTS = ['*']
