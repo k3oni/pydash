@@ -4,9 +4,10 @@ from django.template import RequestContext
 from django.utils import simplejson
 
 from main.views import *
-from pydash.settings import TIME_JS_REFRESH
+from pydash.settings import TIME_JS_REFRESH, TIME_JS_REFRESH_LONG
 
 time_refresh = TIME_JS_REFRESH
+time_refresh_long = TIME_JS_REFRESH_LONG
 
 def uptime(request):
     """

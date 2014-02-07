@@ -69,7 +69,7 @@
                 <br>
               <div style="text-align:center;">
 		<b>OS:</b> <span class=""></span>{{ getplatform }}<br>
-              	<b>Uptime:</b> <span class="" id="os-uptime"></span> Hours<br>
+              	<b>Uptime:</b> <span class="" id="get-uptime"></span> Hours<br>
               	<b>Hostname:</b> <span class=""></span>{{ gethostname }}<br>
 		<b>CPU(s):</b> <span class=""></span>{{ getcpus.cpus }} x {{ getcpus.type }}
               	<br><br>
@@ -280,8 +280,8 @@ function get_os_data(url, element) {
 
 var dashboard = {};
 
-dashboard.getOs = function() {
-	get_os_data('/info/uptime/', "#os-uptime");
+dashboard.getUptime = function() {
+	get_os_data('/info/uptime/', "#get-uptime");
 	}
 dashboard.getDisk = function() {
 	$.getJSON('/info/getdisk/{{ getdisk }}', function(data) {
@@ -347,12 +347,21 @@ var load_ctx = $("#loadChart").get(0).getContext("2d");
         $(function() {
             window.setInterval('memory_usage()', {{ time_refresh }});
             window.setInterval('load_average()', {{ time_refresh }});
-            window.setInterval('dashboard.getOs()', {{ time_refresh }});
-            window.setInterval('dashboard.getDisk()', {{ time_refresh }});
-            window.setInterval('dashboard.getUsers()', {{ time_refresh }});
+            window.setInterval('dashboard.getUptime()', {{ time_refresh_long }});
+            window.setInterval('dashboard.getDisk()', {{ time_refresh_long }});
+            window.setInterval('dashboard.getUsers()', {{ time_refresh_long }});
             window.setInterval('cpuu_usage()', {{ time_refresh }});
         });
-        
+
+$(function pageLoad() {
+    memory_usage();
+    load_average();
+    cpuu_usage();
+    dashboard.getUptime();
+    dashboard.getDisk();
+    dashboard.getUsers();
+    });
+
 </script>
 {% endblock %}
 

@@ -8,9 +8,10 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.utils import simplejson
-from pydash.settings import TIME_JS_REFRESH
+from pydash.settings import TIME_JS_REFRESH, TIME_JS_REFRESH_LONG
 
 time_refresh = TIME_JS_REFRESH
+time_refresh_long = TIME_JS_REFRESH_LONG
 
 def index(request):
     """
@@ -102,14 +103,14 @@ def get_users():
 	pipe = os.popen("who |" + "awk '{print $1, $2, $6}'")
 	data = pipe.read().strip().split('\n')
 	pipe.close()
-
+	
 	data = [i.split(None, 3) for i in data]
 
     except Exception, err:
 	data = str(err)
     
-    if not data:
-	data = ['No data available']
+    if data[0] == []:
+	data = [['No', 'data', 'available']]
     
     return data
 	
@@ -235,5 +236,6 @@ def getall(request):
 					    'gettraffic': get_traffic('eth0'),
 					    #'getusers': get_users(),
 					    'getcpuusage': get_cpu_usage(),
-					    'time_refresh': time_refresh
+					    'time_refresh': time_refresh,
+					    'time_refresh_long': time_refresh_long
 					    }, context_instance=RequestContext(request))
