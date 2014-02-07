@@ -293,25 +293,25 @@ def gettraffic(request):
                 break
 
     if len(datasets_in_i) <= 1:
-        datasets_in_i.append(int(traffic['traffic_in']))
+        datasets_in_i.append(float(traffic['traffic_in']))
     if len(datasets_in_i) == 2:
-        datasets_in_i.append(int(traffic['traffic_in']))
+        datasets_in_i.append(float(traffic['traffic_in']))
         del datasets_in_i[0]
     if len(datasets_out_o) <= 1:
-        datasets_out_o.append(int(traffic['traffic_out']))
+        datasets_out_o.append(float(traffic['traffic_out']))
     if len(datasets_out_o) == 2:
-        datasets_out_o.append(int(traffic['traffic_out']))
+        datasets_out_o.append(float(traffic['traffic_out']))
         del datasets_out_o[0]
 
     if len(datasets_in) <= 9:
-        datasets_in.append(float((datasets_in_i[1] - datasets_in_i[0]) / 1024 ))
+        datasets_in.append(float(((datasets_in_i[1] - datasets_in_i[0]) / 1024 ) / ( time_refresh / 1000 )))
     if len(datasets_in) == 10:
-        datasets_in.append(float((datasets_in_i[1] - datasets_in_i[0]) / 1024 ))
+        datasets_in.append(float(((datasets_in_i[1] - datasets_in_i[0]) / 1024 ) / ( time_refresh / 1000 )))
         del datasets_in[0]
     if len(datasets_out) <= 9:
-        datasets_out.append(float((datasets_out_o[1] - datasets_out_o[0]) / 1024 ))
+        datasets_out.append(float(((datasets_out_o[1] - datasets_out_o[0]) / 1024 ) / ( time_refresh / 1000 )))
     if len(datasets_out) == 10:
-        datasets_out.append(float((datasets_out_o[1] - datasets_out_o[0]) / 1024 ))
+        datasets_out.append(float(((datasets_out_o[1] - datasets_out_o[0]) / 1024 ) / ( time_refresh / 1000 )))
         del datasets_out[0]
 
 
@@ -323,7 +323,7 @@ def gettraffic(request):
             datasets_in[9] += 0.1
 
     traff = {
-        'labels': [""] * 10,
+        'labels': ["KBps"] * 10,
         'datasets': [
             {
                 "fillColor": "rgba(105,210,231,0.5)",

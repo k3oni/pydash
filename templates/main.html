@@ -90,7 +90,7 @@
             <!-- /widget-header -->
             <div class="widget-content">
         	<p></p>
-                <canvas id="cpuuChart" width="270" height="200"></canvas>
+                <canvas id="cpuuChart" width="270" height="180"></canvas>
                 <div>
         	    <span class="cpuf">{% trans "Free" %}</span>
         	    <span class="cpuu">{% trans "Used" %}</span>
@@ -356,7 +356,7 @@ var trf_ctx = $("#trfChart").get(0).getContext("2d");
                 var options = {
             	    animation : false,
                     pointDotRadius : 2,
-                    scaleLabel : "<%=value%> Kb"
+                    scaleLabel : "<%=value%>"
                 }
                 trfChart.Line(data, options);
             });
@@ -382,7 +382,7 @@ var load_ctx = $("#loadChart").get(0).getContext("2d");
             window.setInterval('dashboard.getDisk()', {{ time_refresh_long }});
             window.setInterval('dashboard.getUsers()', {{ time_refresh_long }});
             window.setInterval('cpuu_usage()', {{ time_refresh }});
-            window.setInterval('traffic_usage()', 1000);
+            window.setInterval('traffic_usage()', {{ time_refresh }});
         });
 
 $(function pageLoad() {

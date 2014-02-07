@@ -121,7 +121,7 @@ def get_traffic(request):
     Get the traffic for the specified interface
     """
     try:
-	pipe = os.popen("cat /proc/net/dev |" + "grep " + request +  "| awk '{print $2, $10}'")
+	pipe = os.popen("cat /proc/net/dev |" + "grep " + request +  "| awk '{print $1, $9}'")
 	data = pipe.read().strip().split(':',1)[-1]
 	pipe.close()
 
