@@ -11,6 +11,9 @@ Current dependencies:
   - >= Django 1.6.1
 
 
+![pyDash](https://www.yaktab.com/en/2btxew)
+
+
 Installation
 ============
 
