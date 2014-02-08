@@ -11,6 +11,12 @@ Current dependencies:
   - >= Django 1.6.1
 
 
+Installation
+============
+
+###[Installing pyDash](https://github.com/k3oni/pydash/wiki/Install-pyDash)
+
+
 
 License
 =======
