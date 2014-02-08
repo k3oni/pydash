@@ -11,6 +11,12 @@ Current dependencies:
   - >= Django 1.6.1
 
 
+[View Demo](http://pydash-test.hostechs.com)
+
+     user: admin
+     pass: admin
+
+
 ![pyDash](https://www.yaktab.com/en/2btxew)
 
 
