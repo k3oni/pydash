@@ -1,4 +1,4 @@
-import socket, platform, os, multiprocessing
+import socket, platform, os, multiprocessing, json
 
 from datetime import timedelta
 
@@ -7,7 +7,6 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
-from django.utils import simplejson
 from pydash.settings import TIME_JS_REFRESH, TIME_JS_REFRESH_LONG, TIME_JS_REFRESH_NET, VERSION
 
 time_refresh = TIME_JS_REFRESH

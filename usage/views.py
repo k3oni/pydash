@@ -1,7 +1,7 @@
+import json
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
-from django.utils import simplejson
 
 from main.views import *
 from pydash.settings import TIME_JS_REFRESH, TIME_JS_REFRESH_LONG, TIME_JS_REFRESH_NET
@@ -22,7 +22,7 @@ def uptime(request):
     except Exception:
 	up_time = None
 	
-    data = simplejson.dumps(up_time)
+    data = json.dumps(up_time)
     response = HttpResponse()
     response['Content-Type'] = "text/javascript"
     response.write(data)
@@ -40,7 +40,7 @@ def getdisk(request):
     except Exception:
 	getdisk = None
 	
-    data = simplejson.dumps(getdisk)
+    data = json.dumps(getdisk)
     response = HttpResponse()
     response['Content-Type'] = "text/javascript"
     response.write(data)
@@ -58,7 +58,7 @@ def getips(request):
     except Exception:
 	get_ips = None
 	
-    data = simplejson.dumps(get_ips['itfip'])
+    data = json.dumps(get_ips['itfip'])
     response = HttpResponse()
     response['Content-Type'] = "text/javascript"
     response.write(data)
@@ -77,7 +77,7 @@ def getusers(request):
     except Exception:
 	online_users = None
 	
-    data = simplejson.dumps(online_users)
+    data = json.dumps(online_users)
     response = HttpResponse()
     response['Content-Type'] = "text/javascript"
     response.write(data)
@@ -96,7 +96,7 @@ def getproc(request):
     except Exception:
 	processes = None
 	
-    data = simplejson.dumps(processes)
+    data = json.dumps(processes)
     response = HttpResponse()
     response['Content-Type'] = "text/javascript"
     response.write(data)
@@ -126,7 +126,7 @@ def cpuusage(request):
     	    }
 	]
 
-    data = simplejson.dumps(cpu)
+    data = json.dumps(cpu)
     response = HttpResponse()
     response['Content-Type'] = "text/javascript"
     response.write(data)
@@ -186,7 +186,7 @@ def memusage(request):
         ]
     }
     
-    data = simplejson.dumps(memory)
+    data = json.dumps(memory)
     response = HttpResponse()
     response['Content-Type'] = "text/javascript"
     response.cookies['memory_usage'] = datasets
@@ -247,7 +247,7 @@ def loadaverage(request):
         ]
     }
     
-    data = simplejson.dumps(load)
+    data = json.dumps(load)
     response = HttpResponse()
     response['Content-Type'] = "text/javascript"
     response.cookies['load_average'] = datasets
@@ -366,7 +366,7 @@ def gettraffic(request):
     }
 
     cookie_traffic = [datasets_in, datasets_out, datasets_in_i, datasets_out_o]
-    data = simplejson.dumps(traff)
+    data = json.dumps(traff)
     response = HttpResponse()
     response['Content-Type'] = "text/javascript"
     response.cookies['traffic'] = cookie_traffic
