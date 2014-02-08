@@ -322,8 +322,8 @@
 <!--[if lte IE 8]>
     <script src="{% static "js/excanvas.js" %}"></script>
 <![endif]-->
+<script src="{% static "js/pydash.js" %}"></script>
 <script type="text/javascript">
-
 function get_os_data(url, element) {
     $.get(url, function(data) {
             $(element).text(data);
@@ -333,54 +333,54 @@ function get_os_data(url, element) {
 var dashboard = {};
 
 dashboard.getUptime = function() {
-	get_os_data('/info/uptime/', "#get-uptime");
-	}
+        get_os_data('/info/uptime/', "#get-uptime");
+        }
 dashboard.getDisk = function() {
-	$.getJSON('/info/getdisk/{{ getdisk }}', function(data) {
-	    var tr='';
-	    $.each( data, function( index, item){
-		tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td><td>'+item[2]+'</td><td>'+item[3]+'</td><td>'+item[4]+'</td><td>'+item[5]+'</td></tr>';
-		})
-	    tr+='';
-	    $("#get-disk").html( tr );
-	});
+        $.getJSON('/info/getdisk/', function(data) {
+            var tr='';
+            $.each( data, function( index, item){
+                tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td><td>'+item[2]+'</td><td>'+item[3]+'</td><td>'+item[4]+'</td><td>'+item[5]+'</td></tr>';
+                })
+            tr+='';
+            $("#get-disk").html( tr );
+        });
     }
 dashboard.getUsers = function() {
-	$.getJSON('/info/getusers/{{ getusers }}', function(data) {
-	    var tr='';
-	    $.each( data, function( index, item){
-		tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td><td>'+item[2]+'</td></tr>';
-		})
-	    tr+='';
-	    $("#get-users").html( tr );
-	});
+        $.getJSON('/info/getusers/', function(data) {
+            var tr='';
+            $.each( data, function( index, item){
+                tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td><td>'+item[2]+'</td></tr>';
+                })
+            tr+='';
+            $("#get-users").html( tr );
+        });
     }
 dashboard.getProc = function() {
-	$.getJSON('/info/proc/', function(data) {
-	    var tr='';
-	    $.each( data, function( index, item){
-		tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td><td>'+item[2]+'</td><td>'+item[3]+'</td><td>'+item[4]+'</td><td>'+item[5]+'</td><td>'+item[6]+'</td><td>'+item[7]+'</td><td>'+item[8]+'</td><td>'+item[9]+'</td><td>'+item[10]+'</td></tr>';
-		})
-	    tr+='';
-	    $("#get-proc").html( tr );
-	});
+        $.getJSON('/info/proc/', function(data) {
+            var tr='';
+            $.each( data, function( index, item){
+                tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td><td>'+item[2]+'</td><td>'+item[3]+'</td><td>'+item[4]+'</td><td>'+item[5]+'</td><td>'+item[6]+'</td><td>'+item[7]+'</td><td>'+item[8]+'</td><td>'+item[9]+'</td><td>'+item[10]+'</td></tr>';
+                })
+            tr+='';
+            $("#get-proc").html( tr );
+        });
     }
 dashboard.getIps = function() {
-	$.getJSON('/info/getips/{{ getips }}', function(data) {
-	    var tr='';
-	    $.each( data, function( index, item){
-		tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td></tr>';
-		})
-	    tr+='';
-	    $("#get-ips").html( tr );
-	});
+        $.getJSON('/info/getips/', function(data) {
+            var tr='';
+            $.each( data, function( index, item){
+                tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td></tr>';
+                })
+            tr+='';
+            $("#get-ips").html( tr );
+        });
     }
-	
-	
+
+
 var mem_ctx = $("#memoryChart").get(0).getContext("2d");
         var memChart = new Chart(mem_ctx);
         function memory_usage(){
-            $.getJSON('/info/memory/{{ memusage }}', function(data) {
+            $.getJSON('/info/memory/', function(data) {
                 var options = {
                     animation : false,
                     pointDotRadius : 2,
@@ -389,14 +389,14 @@ var mem_ctx = $("#memoryChart").get(0).getContext("2d");
                 memChart.Line(data, options);
             });
         }
-        
+
 var cpu_ctx = $("#cpuuChart").get(0).getContext("2d");
         var cpuChart = new Chart(cpu_ctx);
         function cpuu_usage(){
-            $.getJSON('/info/cpuusage/{{ cpuusage }}', function(data) {
+            $.getJSON('/info/cpuusage/', function(data) {
                 var options = {
-            	    percentageInnerCutout : 50,
-            	    segmentStrokeWidth : 0
+                    percentageInnerCutout : 50,
+                    segmentStrokeWidth : 0
                 }
                 cpuChart.Doughnut(data, options);
             });
@@ -407,7 +407,7 @@ var trf_ctx = $("#trfChart").get(0).getContext("2d");
         function traffic_usage(){
             $.getJSON('/info/gettraffic/', function(data) {
                 var options = {
-            	    animation : false,
+                    animation : false,
                     pointDotRadius : 2,
                     scaleLabel : "<%=value%>"
                 }
@@ -418,7 +418,7 @@ var trf_ctx = $("#trfChart").get(0).getContext("2d");
 var load_ctx = $("#loadChart").get(0).getContext("2d");
         var loadChart = new Chart(load_ctx);
         function load_average(){
-            $.getJSON('/info/loadaverage/{{ loadaverage }}', function(data) {
+            $.getJSON('/info/loadaverage/', function(data) {
                 var options = {
                     animation : false,
                     pointDotRadius : 2,
@@ -428,7 +428,7 @@ var load_ctx = $("#loadChart").get(0).getContext("2d");
             });
         }
 
-        $(function() {
+$(function() {
             window.setInterval('memory_usage()', {{ time_refresh }});
             window.setInterval('load_average()', {{ time_refresh }});
             window.setInterval('cpuu_usage()', {{ time_refresh }});
@@ -450,8 +450,9 @@ $(function pageLoad() {
     dashboard.getIps();
     dashboard.getProc();
     });
-
 </script>
+
+
 {% endblock %}
 
 </body>
