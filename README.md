@@ -27,6 +27,20 @@ Installation
 
 
 
+OS Support
+==========
+
+pyDash was tested and runs under the following OSs:
+  - Centos
+  - Fedora
+  - Ubuntu
+  - Debian
+  - Raspbian
+
+Might work under others, but didn't get to test any other OSs just yet.
+
+
+
 License
 =======
 
