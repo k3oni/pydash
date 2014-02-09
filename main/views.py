@@ -130,6 +130,11 @@ def get_traffic(request):
 	data = pipe.read().strip().split(':',1)[-1]
 	pipe.close()
 
+	if type(data[0]) is str:
+	    pipe = os.popen("cat /proc/net/dev |" + "grep " + request +  "| awk '{print $2, $10}'")
+	    data = pipe.read().strip().split(':',1)[-1]
+	    pipe.close()
+	                                    
 	data = data.split()
 	
 	traffic_in = int(data[0])
@@ -173,6 +178,9 @@ def get_disk():
     return data
 
 def get_mem():
+    """
+    Get memory usage
+    """
     try:
 	pipe = os.popen("free -tmo | " + "grep 'Mem' | " + "awk '{print $2,$4}'")
 	data = pipe.read().strip().split()
@@ -194,6 +202,9 @@ def get_mem():
     return data
     
 def get_cpu_usage():
+    """
+    Get the CPU usage and running processes
+    """
     try:
 	pipe = os.popen("ps aux --sort -%cpu,-rss")
 	data = pipe.read().strip().split('\n')
@@ -223,6 +234,9 @@ def get_cpu_usage():
     return data
 
 def get_load():
+    """
+    Get load average
+    """
     try:
 	data = os.getloadavg()[0]
     except Exception, err:

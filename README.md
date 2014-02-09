@@ -8,7 +8,7 @@ The dashboard is built using only Python libraries available in the main Python 
 
 Current dependencies:
 
-  - >= Django 1.6.1
+  - == Django 1.6.1
 
 
 [View Demo](http://pydash-test.hostechs.com)
