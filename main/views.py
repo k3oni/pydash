@@ -132,8 +132,8 @@ def get_traffic(request):
 	    pipe = os.popen("cat /proc/net/dev |" + "grep " + request +  "| awk '{print $2, $10}'")
 	    data = pipe.read().strip().split(':',1)[-1]
 	    pipe.close()
-	else:                        
-	    data = data.split()
+
+	data = data.split()
 	
 	traffic_in = int(data[0])
 	traffic_out = int(data[1])
