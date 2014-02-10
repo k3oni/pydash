@@ -62,18 +62,16 @@ def get_ipaddress():
     Get the IP Address
     """
     try:
-	pipe = os.popen("/sbin/ifconfig |" + "grep -B1 'inet addr' |" + "awk '{ if ( $1 == \"inet\" ) { print $2 } else if ( $2 == \"Link\" ) { printf \"%s:\",$1 } }' |" + " awk -F: '{ print $1, $3 }'")
+	pipe = os.popen(" ip addr | grep -A3 'state UP' | awk '{printf \"%s,\",$2}'|awk -F, '{print $1, $2, $3}'")
 	data = pipe.read().strip().split('\n')
 	pipe.close()
 
-	data = [n for n in data if not n.startswith(('lo', '127'))] 
-	
-	data = [i.split(None, 2) for i in data]
+	data = [i.split(None, 3) for i in data]
 	for e in data:
-	    if len(e) > 2:
-		itf = dict(zip([iter(e[0])]))
+	    if len(e) > 3:
+		itf = dict(zip([iter(e[0].strip(':'))]))
 	    else:
-		itf = [e[0]]
+		itf = [e[0].strip(':')]
 		
 	ips = {'interface': itf, 'itfip': data}
 	

@@ -214,8 +214,9 @@
 		<table class="table table-hover table-condensed table-bordered">
 		    <thead>
     			<tr>
-        		    <th>Interface</th>
+        		    <th>Intf</th>
         		    <th>IP</th>
+        		    <th>Mac</th>
     			</tr>
 		    </thead>
 		    <tbody id="get-ips">
@@ -368,7 +369,7 @@ dashboard.getIps = function() {
         $.getJSON('/info/getips/', function(data) {
             var tr='';
             $.each( data, function( index, item){
-                tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td></tr>';
+                tr+='<tr><td>'+item[0]+'</td><td>'+item[2]+'</td><td>'+item[1]+'</td></tr>';
                 })
             tr+='';
             $("#get-ips").html( tr );
