@@ -26,6 +26,12 @@ Installation
 ###[Installing pyDash](https://github.com/k3oni/pydash/wiki/Install-pyDash)
 
 
+Settings
+========
+
+###[pyDash settings](https://github.com/k3oni/pydash/wiki/Settings)
+
+
 
 OS Support
 ==========
