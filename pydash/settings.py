@@ -30,6 +30,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+#All refresh values are in miliseconds, 1 second = 1000 miliseconds
+#Adjust accordingly as you wish
 TIME_JS_REFRESH = 30000
 TIME_JS_REFRESH_LONG = 120000
 TIME_JS_REFRESH_NET = 2000

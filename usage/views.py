@@ -48,7 +48,7 @@ def getdisk(request):
     
 def getips(request):
     """
-    Return the online users
+    Return the IPs and interfaces
     """
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login')
@@ -67,7 +67,7 @@ def getips(request):
     
 def getusers(request):
     """
-    Return uptime
+    Return online users
     """
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login')
@@ -85,7 +85,7 @@ def getusers(request):
     
 def getproc(request):
     """
-    Return uptime
+    Return the running processes
     """
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/login')
