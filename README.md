@@ -11,7 +11,7 @@ Current dependencies:
   - == Django 1.6.1
 
 
-__[View Demo](http://demo.pydash.net)__
+__[View Demo](http://pydash.hostechs.com/)__
 
      user: admin
      pass: admin
