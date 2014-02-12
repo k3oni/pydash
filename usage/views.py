@@ -222,9 +222,9 @@ def loadaverage(request):
             if len(datasets) == 10:
                 break
     if len(datasets) <= 9:
-        datasets.append(int(load_average))
+        datasets.append(float(load_average))
     if len(datasets) == 10:
-        datasets.append(int(load_average))
+        datasets.append(float(load_average))
         del datasets[0]
 
     # Some fix division by 0 Chart.js
