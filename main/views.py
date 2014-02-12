@@ -88,12 +88,12 @@ def get_cpus():
     """
     try:
 	pipe = os.popen("cat /proc/cpuinfo |" + "grep 'model name'")
-	data = pipe.read().strip().split(':',2)[-1]
+	data = pipe.read().strip().split(':')[-1]
 	pipe.close()
 
 	if not data:
 	    pipe = os.popen("cat /proc/cpuinfo |" + "grep 'Processor'")
-	    data = pipe.read().strip().split(':',2)[-1]
+	    data = pipe.read().strip().split(':')[-1]
 	    pipe.close()
 		
 	cpus = multiprocessing.cpu_count()

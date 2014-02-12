@@ -1,3 +1,4 @@
 *.pyc
 ._*
 *.sqlite3
+setting.py
