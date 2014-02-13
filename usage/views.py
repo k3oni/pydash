@@ -2,6 +2,7 @@ import json
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
 
 from main.views import *
 from pydash.settings import TIME_JS_REFRESH, TIME_JS_REFRESH_LONG, TIME_JS_REFRESH_NET
@@ -10,13 +11,11 @@ time_refresh = TIME_JS_REFRESH
 time_refresh_long = TIME_JS_REFRESH_LONG
 time_refresh_net = TIME_JS_REFRESH_NET
 
+@login_required(login_url='/login/')
 def uptime(request):
     """
     Return uptime
     """
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/login')
-    
     try:
 	up_time = get_uptime()
     except Exception:
@@ -28,13 +27,11 @@ def uptime(request):
     response.write(data)
     return response
 
+@login_required(login_url='/login/')
 def getdisk(request):
     """
     Return the disk usage
     """
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/login')
-    
     try:
 	getdisk = get_disk()
     except Exception:
@@ -45,14 +42,12 @@ def getdisk(request):
     response['Content-Type'] = "text/javascript"
     response.write(data)
     return response
-    
+
+@login_required(login_url='/login/')
 def getips(request):
     """
     Return the IPs and interfaces
     """
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/login')
-    
     try:
 	get_ips = get_ipaddress()
     except Exception:
@@ -64,14 +59,12 @@ def getips(request):
     response.write(data)
     return response
 
-    
+
+@login_required(login_url='/login/')
 def getusers(request):
     """
     Return online users
     """
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/login')
-    
     try:
 	online_users = get_users()
     except Exception:
@@ -82,14 +75,13 @@ def getusers(request):
     response['Content-Type'] = "text/javascript"
     response.write(data)
     return response
-    
+
+
+@login_required(login_url='/login/')    
 def getproc(request):
     """
     Return the running processes
     """
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/login')
-    
     try:
 	processes = get_cpu_usage()
 	processes = processes['all']
@@ -102,13 +94,11 @@ def getproc(request):
     response.write(data)
     return response
 
+@login_required(login_url='/login/')
 def cpuusage(request):
     """
     Return CPU Usage in %
     """
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/login')
-
     try:
         cpu_usage = get_cpu_usage()
         
@@ -132,13 +122,11 @@ def cpuusage(request):
     response.write(data)
     return response
 
+@login_required(login_url='/login/')
 def memusage(request):
     """
     Return Memory Usage in % and numeric
     """
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/login')
-        
     datasets = []
 
     try:
@@ -192,14 +180,12 @@ def memusage(request):
     response.cookies['memory_usage'] = datasets
     response.write(data)
     return response
-    
+
+@login_required(login_url='/login/')    
 def loadaverage(request):
     """
     Return Load Average numeric
     """
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/login')
-        
     datasets = []
 
     try:
@@ -255,13 +241,11 @@ def loadaverage(request):
     return response
 
 
+@login_required(login_url='/login/')
 def gettraffic(request):
     """
     Return the traffic for the interface
     """
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/login')
-
     datasets_in = []
     datasets_in_i = []
     datasets_out = []

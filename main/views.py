@@ -2,6 +2,7 @@ import socket, platform, os, multiprocessing, json
 
 from datetime import timedelta
 
+from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
@@ -14,16 +15,14 @@ time_refresh_long = TIME_JS_REFRESH_LONG
 time_refresh_net = TIME_JS_REFRESH_NET
 version = VERSION
 
+@login_required(login_url='/login/')
 def index(request):
     """
 
     Index page.
 
     """
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect('/login')
-    else:
-        return HttpResponseRedirect('/main')
+    return HttpResponseRedirect('/main')
 
 
 def chunks(get, n):
@@ -246,9 +245,8 @@ def get_load():
 
     return data
     
+@login_required(login_url='/login/')
 def getall(request):
-    if not request.user.is_authenticated():
-	return HttpResponseRedirect('/login')
 	
     return render_to_response('main.html', {'gethostname': get_hostname(),
 					    'getplatform': get_platform(),
