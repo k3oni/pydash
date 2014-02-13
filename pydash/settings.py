@@ -23,7 +23,7 @@ SECRET_KEY = '1)$crmowu-23tz@i2-d=7tb3t+1u&(pm!lnjyuarki^72h!3af'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ADMINS = (
 )

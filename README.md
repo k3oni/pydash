@@ -52,4 +52,12 @@ Might work under others, but didn't get to test any other OSs just yet.
 License
 =======
 
-**MIT**
+**[MIT](https://github.com/k3oni/pydash/blob/master/LICENSE.md)**
+
+
+
+Credits
+=======
+[Dashboard Template](http://www.egrappler.com/templatevamp-free-twitter-bootstrap-admin-template/), 
+[Bootstrap](http://getbootstrap.com/), 
+[Font Awesome](http://fontawesome.io/)
