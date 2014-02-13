@@ -222,10 +222,9 @@ def get_cpu_usage():
 	    usage_cpu = element[2]
 	    total_usage.append(usage_cpu)
 	
-	#del total_usage[0]
 	total_usage = sum(float(i) for i in total_usage)
 	
-	total_free = (100 - float(total_usage))
+	total_free = ((100 * int(get_cpus()['cpus'])) - float(total_usage))
 	
 	cpu_used = {'free': total_free, 'used': float(total_usage), 'all': usage}
 	
