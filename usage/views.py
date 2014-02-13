@@ -268,6 +268,7 @@ def gettraffic(request):
     datasets_out_o = []
     json_traffic = []
     cookie_traffic = {}
+    label = "KBps"
 
     try:
 	intf = get_ipaddress()
@@ -326,17 +327,24 @@ def gettraffic(request):
         datasets_out_o.append(float(traffic['traffic_out']))
         del datasets_out_o[0]
 
+    dataset_in = (float(((datasets_in_i[1] - datasets_in_i[0]) / 1024 ) / ( time_refresh_net / 1000 )))
+    dataset_out = (float(((datasets_out_o[1] - datasets_out_o[0]) / 1024 ) / ( time_refresh_net / 1000 )))
+    
+    if dataset_in > 1024 or dataset_out > 1024:
+	dataset_in = (float(dataset_in / 1024 ))
+	dataset_out = (float(dataset_out / 1024 ))
+	label = "MBps"
+    
     if len(datasets_in) <= 9:
-        datasets_in.append(float(((datasets_in_i[1] - datasets_in_i[0]) / 1024 ) / ( time_refresh_net / 1000 )))
+        datasets_in.append(dataset_in)
     if len(datasets_in) == 10:
-        datasets_in.append(float(((datasets_in_i[1] - datasets_in_i[0]) / 1024 ) / ( time_refresh_net / 1000 )))
+        datasets_in.append(dataset_in)
         del datasets_in[0]
     if len(datasets_out) <= 9:
-        datasets_out.append(float(((datasets_out_o[1] - datasets_out_o[0]) / 1024 ) / ( time_refresh_net / 1000 )))
+        datasets_out.append(dataset_out)
     if len(datasets_out) == 10:
-        datasets_out.append(float(((datasets_out_o[1] - datasets_out_o[0]) / 1024 ) / ( time_refresh_net / 1000 )))
+        datasets_out.append(dataset_out)
         del datasets_out[0]
-
 
     # Some fix division by 0 Chart.js
     if len(datasets_in) == 10:
@@ -346,7 +354,7 @@ def gettraffic(request):
             datasets_in[9] += 0.1
 
     traff = {
-        'labels': ["KBps"] * 10,
+        'labels': [label] * 10,
         'datasets': [
             {
                 "fillColor": "rgba(105,210,231,0.5)",
