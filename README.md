@@ -23,7 +23,7 @@ __[View Demo](http://pydash.hostechs.com/)__
 Installation
 ============
 
-###[Installing pyDash](https://github.com/k3oni/pydash/wiki/Install-pyDash)
+###[Installing pyDash](https://github.com/k3oni/pydash/wiki)
 
 
 Settings
