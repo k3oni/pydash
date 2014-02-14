@@ -200,7 +200,56 @@
           </div>
           <!-- /widget -->
          </div>
+         
+    
          <div class="span3">
+           <div class="widget">
+            <div class="widget-header"> <i class="icon-monitor"></i>
+              <h3>Internet Traffic</h3>
+              <div id="refresh-ispeed">
+              </div>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+        	<p></p>
+                <canvas id="trfChart" width="270" height="200"></canvas>
+                <div>
+        	    <span class="netin">{% trans "In" %}</span>
+        	    <span class="netout">{% trans "Out" %}</span>
+    		</div>
+            </div>
+            
+            <!-- /widget-content -->
+          </div>
+          <!-- /widget -->
+         </div><!-- /span -->
+         
+         <div class="span3">
+           <div class="widget">
+            <div class="widget-header"> <i class="icon-monitor"></i>
+              <h3>Disk Reads/Writes</h3>
+              <div id="refresh-diskio">
+              </div>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+        	<p></p>
+                <canvas id="dskChart" width="270" height="200"></canvas>
+                <div>
+        	    <span class="diskr">{% trans "Reads" %}</span>
+        	    <span class="diskw">{% trans "Writes" %}</span>
+    		</div>
+            </div>
+            <!-- /widget-content -->
+          </div>
+          <!-- /widget -->
+         </div>
+         <!-- /span -->
+      </div>
+      <!-- /row -->
+
+    <div class="row">
+	<div class="span6">
            <div class="widget widget-table action-table">
             <div class="widget-header"> <i class="icon-monitor"></i>
               <h3>IP Adresses</h3>
@@ -225,32 +274,8 @@
           </div>
           <!-- /widget -->
          </div><!-- /span -->
-    
-         <div class="span3">
-           <div class="widget">
-            <div class="widget-header"> <i class="icon-monitor"></i>
-              <h3>Internet Traffic</h3>
-              <div id="refresh-ispeed">
-              </div>
-            </div>
-            <!-- /widget-header -->
-            <div class="widget-content">
-        	<p></p>
-                <canvas id="trfChart" width="270" height="200"></canvas>
-                <div>
-        	    <span class="netin">{% trans "In" %}</span>
-        	    <span class="netout">{% trans "Out" %}</span>
-    		</div>
-            </div>
-            
-            <!-- /widget-content -->
-          </div>
-          <!-- /widget -->
-         </div><!-- /span -->
-         
-	<!-- online users widget (breaks DOM pattern) -->
-      </div>
-      <!-- /row -->
+    </div>
+    <!-- /row -->
 
       <div class="row">
         <div class="span12">
@@ -412,6 +437,19 @@ var trf_ctx = $("#trfChart").get(0).getContext("2d");
                 trfChart.Line(data, options);
             });
         }
+        
+var dsk_ctx = $("#dskChart").get(0).getContext("2d");
+        var dskChart = new Chart(dsk_ctx);
+        function disk_io(){
+            $.getJSON('/info/getdiskio/', function(data) {
+                var options = {
+                    animation : false,
+                    pointDotRadius : 2,
+                    scaleLabel : "<%=value%>"
+                }
+                dskChart.Line(data, options);
+            });
+        }
 
 var load_ctx = $("#loadChart").get(0).getContext("2d");
         var loadChart = new Chart(load_ctx);
@@ -432,6 +470,7 @@ $(function() {
             window.setInterval('load_average()', {{ time_refresh }});
             window.setInterval('cpuu_usage()', {{ time_refresh }});
             window.setInterval('traffic_usage()', {{ time_refresh_net }});
+            window.setInterval('disk_io()', {{ time_refresh_net }});
             window.setInterval('dashboard.getUptime()', {{ time_refresh_long }});
             window.setInterval('dashboard.getDisk()', {{ time_refresh_long }});
             window.setInterval('dashboard.getUsers()', {{ time_refresh_long }});
@@ -443,6 +482,7 @@ $(function pageLoad() {
     load_average();
     cpuu_usage();
     traffic_usage();
+    disk_io();
     dashboard.getUptime();
     dashboard.getDisk();
     dashboard.getUsers();

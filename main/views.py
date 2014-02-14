@@ -1,3 +1,25 @@
+#The MIT License (MIT)
+#
+#Copyright (c) 2014 Florian Neagu - michaelneagu@gmail.com - https://github.com/k3oni/
+#
+#Permission is hereby granted, free of charge, to any person obtaining a copy
+#of this software and associated documentation files (the "Software"), to deal
+#in the Software without restriction, including without limitation the rights
+#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#copies of the Software, and to permit persons to whom the Software is
+#furnished to do so, subject to the following conditions:
+#
+#The above copyright notice and this permission notice shall be included in all
+#copies or substantial portions of the Software.
+#
+#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#SOFTWARE.
+
 import socket, platform, os, multiprocessing, json
 
 from datetime import timedelta
@@ -179,6 +201,29 @@ def get_disk():
     
     return data
 
+def get_disk_rw():
+    """
+    Get the disk reads and writes
+    """
+    try:
+	pipe = os.popen("cat /proc/partitions | grep -v 'major' | awk '{print $4}'")
+	data = pipe.read().strip().split('\n')
+	pipe.close()
+	
+	for i in data:
+	    if i.isalpha():
+		data = []
+		pipe = os.popen("cat /proc/diskstats | grep -w '" + i + "'|awk '{print $4, $8}'")
+		rw = pipe.read().strip().split()
+		pipe.close()
+		
+		data.append([i, rw[0], rw[1]])
+
+    except Exception,err: 
+	data =  str(err)
+    
+    return data
+
 def get_mem():
     """
     Get memory usage
@@ -251,6 +296,7 @@ def getall(request):
     return render_to_response('main.html', {'gethostname': get_hostname(),
 					    'getplatform': get_platform(),
 					    'getcpus': get_cpus(),
+					    'getdiskrw': get_disk_rw(),
 					    'time_refresh': time_refresh,
 					    'time_refresh_long': time_refresh_long,
 					    'time_refresh_net': time_refresh_net,

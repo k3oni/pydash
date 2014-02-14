@@ -388,4 +388,19 @@ h6.bigstats {
     padding: 0 0.3em;
     border-style: solid;
 }
-
+.diskr {
+    border-color: rgb(245,134,15);
+    margin: 0.5em;
+    border-style: solid;
+    border-width: 0 0 0 1em;
+    padding: 0 0.3em;
+    border-style: solid;
+}
+.diskw {
+    border-color: rgb(15,103,245);
+    margin: 0.5em;
+    border-style: solid;
+    border-width: 0 0 0 1em;
+    padding: 0 0.3em;
+    border-style: solid;
+}

@@ -1,3 +1,25 @@
+#The MIT License (MIT)
+#
+#Copyright (c) 2014 Florian Neagu - michaelneagu@gmail.com - https://github.com/k3oni/
+#
+#Permission is hereby granted, free of charge, to any person obtaining a copy
+#of this software and associated documentation files (the "Software"), to deal
+#in the Software without restriction, including without limitation the rights
+#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#copies of the Software, and to permit persons to whom the Software is
+#furnished to do so, subject to the following conditions:
+#
+#The above copyright notice and this permission notice shall be included in all
+#copies or substantial portions of the Software.
+#
+#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#SOFTWARE.
+
 import json
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
@@ -365,3 +387,120 @@ def gettraffic(request):
     response.write(data)
     return response
 
+
+@login_required(login_url='/login/')
+def getdiskio(request):
+    """
+    Return the reads and writes for the drive
+    """
+    datasets_in = []
+    datasets_in_i = []
+    datasets_out = []
+    datasets_out_o = []
+    json_diskrw = []
+    cookie_diskrw = {}
+
+    try:
+	diskrw = get_disk_rw()
+	diskrw = diskrw[0]
+	
+    except Exception:
+        diskrw = 0
+
+    try:
+        cookies = request._cookies['diskrw']
+    except Exception:
+        cookies = None
+
+    if not cookies:
+        datasets_in.append(0)
+        datasets_in_i.append(0)
+        datasets_out.append(0)
+        datasets_out_o.append(0)
+    else:
+        datasets = eval(cookies)
+        datasets_in = datasets[0]
+        datasets_out = datasets[1]
+	datasets_in_i = datasets[2]
+	datasets_out_o = datasets[3]
+
+    if len(datasets_in) > 10:
+        while datasets_in:
+            del datasets_in[0]
+            if len(datasets_in) == 10:
+                break
+    if len(datasets_in_i) > 2:
+        while datasets_in_i:
+            del datasets_in_i[0]
+            if len(datasets_in_i) == 2:
+                break
+    if len(datasets_out) > 10:
+        while datasets_out:
+            del datasets_out[0]
+            if len(datasets_out) == 10:
+                break
+    if len(datasets_out_o) > 2:
+        while datasets_out_o:
+            del datasets_out_o[0]
+            if len(datasets_out_o) == 2:
+                break
+
+    if len(datasets_in_i) <= 1:
+        datasets_in_i.append(int(diskrw[1]))
+    if len(datasets_in_i) == 2:
+        datasets_in_i.append(int(diskrw[1]))
+        del datasets_in_i[0]
+    if len(datasets_out_o) <= 1:
+        datasets_out_o.append(int(diskrw[2]))
+    if len(datasets_out_o) == 2:
+        datasets_out_o.append(int(diskrw[2]))
+        del datasets_out_o[0]
+
+    dataset_in = (int((datasets_in_i[1] - datasets_in_i[0]) / ( time_refresh_net / 1000 )))
+    dataset_out = (int((datasets_out_o[1] - datasets_out_o[0]) / ( time_refresh_net / 1000 )))
+    
+    if len(datasets_in) <= 9:
+        datasets_in.append(dataset_in)
+    if len(datasets_in) == 10:
+        datasets_in.append(dataset_in)
+        del datasets_in[0]
+    if len(datasets_out) <= 9:
+        datasets_out.append(dataset_out)
+    if len(datasets_out) == 10:
+        datasets_out.append(dataset_out)
+        del datasets_out[0]
+
+    # Some fix division by 0 Chart.js
+    if len(datasets_in) == 10:
+        if sum(datasets_in) == 0:
+            datasets_in[9] += 0.1
+        if sum(datasets_in) / 10 == datasets_in[0]:
+            datasets_in[9] += 0.1
+
+    disk_rw = {
+        'labels': [""] * 10,
+        'datasets': [
+            {
+                "fillColor": "rgba(245,134,15,0.5)",
+                "strokeColor": "rgba(245,134,15,1)",
+                "pointColor": "rgba(245,134,15,1)",
+                "pointStrokeColor": "#fff",
+                "data": datasets_in
+            },
+            {
+                "fillColor": "rgba(15,103,245,0.5)",
+                "strokeColor": "rgba(15,103,245,1)",
+                "pointColor": "rgba(15,103,245,1)",
+                "pointStrokeColor": "#fff",
+                "data": datasets_out
+            }
+        ]
+    }
+
+    cookie_diskrw = [datasets_in, datasets_out, datasets_in_i, datasets_out_o]
+    data = json.dumps(disk_rw)
+    response = HttpResponse()
+    response['Content-Type'] = "text/javascript"
+    response.cookies['diskrw'] = cookie_diskrw
+    response.write(data)
+    return response

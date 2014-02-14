@@ -16,13 +16,13 @@ urlpatterns = patterns('',
     url(r'^main/$', 'main.views.getall', name='main'),
     url(r'^info/uptime/$', 'usage.views.uptime', name='uptime'),
     url(r'^info/memory/$', 'usage.views.memusage', name='memusage'),
-    url(r'^info/users/$', 'usage.views.getusers', name='getusers'),
     url(r'^info/cpuusage/$', 'usage.views.cpuusage', name='cpuusage'),
     url(r'^info/getdisk/$', 'usage.views.getdisk', name='getdisk'),
     url(r'^info/getusers/$', 'usage.views.getusers', name='getusers'),
     url(r'^info/getips/$', 'usage.views.getips', name='getips'),
     url(r'^info/gettraffic/$', 'usage.views.gettraffic', name='gettraffic'),
     url(r'^info/proc/$', 'usage.views.getproc', name='getproc'),
+    url(r'^info/getdiskio/$', 'usage.views.getdiskio', name='getdiskio'),
     url(r'^info/loadaverage/$', 'usage.views.loadaverage', name='loadaverage')
 )
 
