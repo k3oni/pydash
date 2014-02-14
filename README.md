@@ -32,6 +32,11 @@ Settings
 ###[pyDash settings](https://github.com/k3oni/pydash/wiki/Settings)
 
 
+Remote data retrieval
+=====================
+
+###[pyDash remote data retrieval](https://github.com/k3oni/pydash/wiki/Remote-data-retreival)
+
 
 OS Support
 ==========
