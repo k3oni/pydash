@@ -210,15 +210,24 @@ def get_disk_rw():
 	data = pipe.read().strip().split('\n')
 	pipe.close()
 	
+	rws = []
 	for i in data:
 	    if i.isalpha():
-		data = []
 		pipe = os.popen("cat /proc/diskstats | grep -w '" + i + "'|awk '{print $4, $8}'")
 		rw = pipe.read().strip().split()
 		pipe.close()
 		
-		data.append([i, rw[0], rw[1]])
-
+		rws.append([i, rw[0], rw[1]])
+		
+	if not rws:
+	    pipe = os.popen("cat /proc/diskstats | grep -w '" + data[0] + "'|awk '{print $4, $8}'")
+	    rw = pipe.read().strip().split()
+	    pipe.close()
+		
+	    rws.append([data[0], rw[0], rw[1]])
+	
+	data = rws
+	    
     except Exception,err: 
 	data =  str(err)
     
