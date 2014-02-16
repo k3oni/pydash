@@ -65,18 +65,6 @@ def get_uptime():
 
     return data
 
-def get_hostname():
-    """
-    Get the hostname
-    """
-    
-    try:
-	data = socket.gethostname()
-	
-    except Exception,err: 
-	    data =  str(err)
-    
-    return data
 
 def get_ipaddress():
     """
@@ -175,10 +163,13 @@ def get_traffic(request):
 
 def get_platform():
     """
-    Get the OS name
+    Get the OS name, hostname and kernel
     """
     try:
-	data = " ".join(platform.linux_distribution())
+	osname = " ".join(platform.linux_distribution())
+	uname = platform.uname()
+	
+	data = {'osname': osname, 'hostname': uname[1], 'kernel': uname[2] }
     
     except Exception,err: 
 	data =  str(err)
@@ -302,8 +293,9 @@ def get_load():
 @login_required(login_url='/login/')
 def getall(request):
 	
-    return render_to_response('main.html', {'gethostname': get_hostname(),
-					    'getplatform': get_platform(),
+    return render_to_response('main.html', {'gethostname': get_platform()['hostname'],
+					    'getplatform': get_platform()['osname'],
+					    'getkernel': get_platform()['kernel'],
 					    'getcpus': get_cpus(),
 					    'time_refresh': time_refresh,
 					    'time_refresh_long': time_refresh_long,
