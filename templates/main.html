@@ -74,6 +74,7 @@
 		<b>OS:</b> <span class=""></span>{{ getplatform }}<br>
               	<b>Uptime:</b> <span class="" id="get-uptime"></span> Hours<br>
               	<b>Hostname:</b> <span class=""></span>{{ gethostname }}<br>
+              	<b>Kernel:</b> <span class=""></span>{{ getkernel }}<br>
 		<b>CPU(s):</b> <span class=""></span>{{ getcpus.cpus }} x {{ getcpus.type }}
               	<br><br>
               </div>
@@ -175,32 +176,32 @@
     
     
       <div class="row">
-        <div class="span6">
-         <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-group"></i>
-              <h3>Online</h3>
-              <div id="refresh-online">
+    	<div class="span6">
+           <div class="widget widget-table action-table">
+            <div class="widget-header"> <i class="icon-monitor"></i>
+              <h3>IP Adresses</h3>
+              <div id="refresh-ip">
               </div>
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-        	<table class="table table-hover table-condensed table-bordered">
+		<table class="table table-hover table-condensed table-bordered">
 		    <thead>
     			<tr>
-        		    <th>User</th>
-        		    <th>TTY</th>
-        		    <th>Logged in from</th>
+        		    <th>Intf</th>
+        		    <th>IP</th>
+        		    <th>Mac</th>
     			</tr>
 		    </thead>
-		    <tbody id="get-users">
+		    <tbody id="get-ips">
 		    </tbody>
-		</table>    
+		</table>
             </div>
             <!-- /widget-content -->
           </div>
           <!-- /widget -->
          </div>
-         
+         <!-- /span -->
     
          <div class="span3">
            <div class="widget">
@@ -250,30 +251,31 @@
 
     <div class="row">
 	<div class="span6">
-           <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-monitor"></i>
-              <h3>IP Adresses</h3>
-              <div id="refresh-ip">
+         <div class="widget widget-table action-table">
+            <div class="widget-header"> <i class="icon-group"></i>
+              <h3>Online</h3>
+              <div id="refresh-online">
               </div>
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-		<table class="table table-hover table-condensed table-bordered">
+        	<table class="table table-hover table-condensed table-bordered">
 		    <thead>
     			<tr>
-        		    <th>Intf</th>
-        		    <th>IP</th>
-        		    <th>Mac</th>
+        		    <th>User</th>
+        		    <th>TTY</th>
+        		    <th>Logged in from</th>
     			</tr>
 		    </thead>
-		    <tbody id="get-ips">
+		    <tbody id="get-users">
 		    </tbody>
-		</table>
+		</table>    
             </div>
             <!-- /widget-content -->
           </div>
           <!-- /widget -->
-         </div><!-- /span -->
+         </div>
+	<!-- /span -->
     </div>
     <!-- /row -->
 
