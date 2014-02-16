@@ -20,7 +20,7 @@
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
 
-import socket, platform, os, multiprocessing, json
+import platform, os, multiprocessing, json
 
 from datetime import timedelta
 
