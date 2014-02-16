@@ -1,4 +1,4 @@
-pyDash
+pyDash - v1.2
 ======
 
 A small web monitoring dashboard for your linux pc/server writen in Python and Django + Chart.js.
@@ -9,7 +9,7 @@ The dashboard is built using only Python libraries available in the main Python 
 Current dependencies:
 
   - == Django 1.6.1
-
+  - >= Python 2.6 
 
 __[View Demo](http://pydash.hostechs.com/)__
 
@@ -48,6 +48,7 @@ pyDash was tested and runs under the following OSs:
   - Debian
   - Raspbian
   - Pidora
+  - Arch Linux
 
 
 Might work under others, but didn't get to test any other OSs just yet.
