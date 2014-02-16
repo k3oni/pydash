@@ -403,7 +403,6 @@ def getdiskio(request):
     try:
 	diskrw = get_disk_rw()
 	diskrw = diskrw[0]
-	label = diskrw[0]
 	
     except Exception:
         diskrw = 0
@@ -479,7 +478,7 @@ def getdiskio(request):
             datasets_in[9] += 0.1
 
     disk_rw = {
-        'labels': [label] * 10,
+        'labels': [""] * 10,
         'datasets': [
             {
                 "fillColor": "rgba(245,134,15,0.5)",

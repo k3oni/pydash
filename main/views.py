@@ -305,7 +305,6 @@ def getall(request):
     return render_to_response('main.html', {'gethostname': get_hostname(),
 					    'getplatform': get_platform(),
 					    'getcpus': get_cpus(),
-					    'getdiskrw': get_disk_rw(),
 					    'time_refresh': time_refresh,
 					    'time_refresh_long': time_refresh_long,
 					    'time_refresh_net': time_refresh_net,
