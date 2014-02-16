@@ -11,6 +11,10 @@ Current dependencies:
   - == Django 1.6.1
   - >= Python 2.6 
 
+
+__Current version: v1.2__
+
+
 __[View Demo](http://pydash.hostechs.com/)__
 
      user: admin
