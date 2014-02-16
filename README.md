@@ -48,6 +48,7 @@ pyDash was tested and runs under the following OSs:
   - Debian
   - Raspbian
   - Pidora
+  - Arch Linux
 
 
 Might work under others, but didn't get to test any other OSs just yet.
