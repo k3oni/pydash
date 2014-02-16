@@ -169,7 +169,7 @@ def get_platform():
 	osname = " ".join(platform.linux_distribution())
 	uname = platform.uname()
 	
-	if osname == '   '
+	if osname == '  ':
 	    osname = uname[0]
 	
 	data = {'osname': osname, 'hostname': uname[1], 'kernel': uname[2] }
