@@ -142,7 +142,7 @@ def get_traffic(request):
 	data = pipe.read().strip().split(':',1)[-1]
 	pipe.close()
 
-	if data == ' 0':
+	if not data[0].isdigit():
 	    pipe = os.popen("cat /proc/net/dev |" + "grep " + request +  "| awk '{print $2, $10}'")
 	    data = pipe.read().strip().split(':',1)[-1]
 	    pipe.close()
@@ -168,6 +168,9 @@ def get_platform():
     try:
 	osname = " ".join(platform.linux_distribution())
 	uname = platform.uname()
+	
+	if osname == '   '
+	    osname = uname[0]
 	
 	data = {'osname': osname, 'hostname': uname[1], 'kernel': uname[2] }
     
