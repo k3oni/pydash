@@ -71,7 +71,7 @@ def get_ipaddress():
     Get the IP Address
     """
     try:
-	pipe = os.popen(" ip addr | grep -A3 'UP' | awk '{printf \"%s,\",$2}'|awk -F,, '{print $1, $2, $3}'")
+	pipe = os.popen(" ip addr | grep -A3 'LOWER_UP' | awk '{printf \"%s,\",$2}'|awk -F,, '{print $1, $2, $3}'")
 	data = pipe.read().strip().split(' ')
 	pipe.close()
 
