@@ -38,7 +38,11 @@ def getnetstat(request):
     """
     Return netstat output
     """
-    net_stat = get_netstat()
+    try:
+	net_stat = get_netstat()
+    except Exception:
+	net_stat = None
+	
     data = json.dumps(net_stat)
     response = HttpResponse()
     response['Content-Type'] = "text/javascript"

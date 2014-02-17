@@ -255,7 +255,7 @@ def get_cpu_usage():
     """
     Get the CPU usage and running processes
     """
-    try:
+    try: 
 	pipe = os.popen("ps aux --sort -%cpu,-rss")
 	data = pipe.read().strip().split('\n')
 	pipe.close()
@@ -295,19 +295,25 @@ def get_load():
     return data
 
 def get_netstat():
+    """
+    Get ports and applications
+    """
     try:
-        pipe = os.popen("netstat -tlnp|grep LISTEN|awk '{print $4, $5, $7}'")
+        pipe = os.popen("netstat -tlnp |" + "grep 'LISTEN' |" + "awk '{print $4, $5, $7}'")
         data = pipe.read().strip().split('\n')
         pipe.close()
+        
         data = [i.split(None, 3) for i in data]
+    
     except Exception, err:
         data = str(err)
+    
     if data[0] == []:
-	    data = [['No', 'data', 'available']]
-    #for i in data:
-    #    temp = i.split()
-    #    print temp[3] + temp[4]
+	data = [['No', 'data', 'available']]
+
     return data
+
+
 @login_required(login_url='/login/')
 def getall(request):
 	
