@@ -49,6 +49,7 @@ def uptime(request):
     response.write(data)
     return response
 
+
 @login_required(login_url='/login/')
 def getdisk(request):
     """
