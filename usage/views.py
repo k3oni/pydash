@@ -33,6 +33,7 @@ time_refresh = TIME_JS_REFRESH
 time_refresh_long = TIME_JS_REFRESH_LONG
 time_refresh_net = TIME_JS_REFRESH_NET
 
+
 @login_required(login_url='/login/')
 def getnetstat(request):
     """
@@ -48,6 +49,7 @@ def getnetstat(request):
     response['Content-Type'] = "text/javascript"
     response.write(data)
     return response
+
 
 @login_required(login_url='/login/')
 def uptime(request):

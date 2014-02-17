@@ -71,16 +71,16 @@ def get_ipaddress():
     Get the IP Address
     """
     try:
-	pipe = os.popen(" ip addr | grep -A3 'state UP' | awk '{printf \"%s,\",$2}'|awk -F, '{print $1, $2, $3}'")
-	data = pipe.read().strip().split('\n')
+	pipe = os.popen(" ip addr | grep -A3 'UP' | awk '{printf \"%s,\",$2}'|awk -F,, '{print $1, $2, $3}'")
+	data = pipe.read().strip().split(' ')
 	pipe.close()
 
-	data = [i.split(None, 3) for i in data]
+	data = [n for n in data if not n.startswith(('lo', '127'))] 
+	data = [i.split(',', 3) for i in data]
+	
+	itf = []
 	for e in data:
-	    if len(e) > 3:
-		itf = dict(zip([iter(e[0].strip(':'))]))
-	    else:
-		itf = [e[0].strip(':')]
+	    itf.append(e[0].strip(':'))
 		
 	ips = {'interface': itf, 'itfip': data}
 	
