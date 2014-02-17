@@ -282,17 +282,32 @@ def get_cpu_usage():
 
     return data
 
+
 def get_load():
     """
     Get load average
     """
     try:
-	data = os.getloadavg()[0]
+        data = os.getloadavg()[0]
     except Exception, err:
-	data = str(err)
+        data = str(err)
 
     return data
-    
+
+def get_netstat():
+    try:
+        pipe = os.popen("netstat -tlnp|grep LISTEN|awk '{print $4, $5, $7}'")
+        data = pipe.read().strip().split('\n')
+        pipe.close()
+        data = [i.split(None, 3) for i in data]
+    except Exception, err:
+        data = str(err)
+    if data[0] == []:
+	    data = [['No', 'data', 'available']]
+    #for i in data:
+    #    temp = i.split()
+    #    print temp[3] + temp[4]
+    return data
 @login_required(login_url='/login/')
 def getall(request):
 	

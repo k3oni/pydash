@@ -42,6 +42,7 @@
             <li><a href="#refresh-ram"><i class="icon-list-alt"></i><span>RAM</span> </a> </li>
             <li><a href="#refresh-load"><i class="icon-bolt"></i><span>Load</span> </a> </li>
             <li><a href="#refresh-online"><i class="icon-user"></i><span>Users</span> </a> </li>
+            <li><a href="#refresh-netstat"><i class="icon-angle-down"></i><span>Netstat</span> </a> </li>
     	    <li><a href="#refresh-ispeed"><i class="icon-exchange"></i><span>Network</span> </a> </li>
     	    <li><a href="#refresh-ps"><i class="icon-list-alt"></i><span>Processes</span> </a> </li>
     	    <li></li>
@@ -250,32 +251,58 @@
       <!-- /row -->
 
     <div class="row">
-	<div class="span6">
-         <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-group"></i>
-              <h3>Online</h3>
-              <div id="refresh-online">
-              </div>
-            </div>
-            <!-- /widget-header -->
-            <div class="widget-content">
-        	<table class="table table-hover table-condensed table-bordered">
-		    <thead>
-    			<tr>
-        		    <th>User</th>
-        		    <th>TTY</th>
-        		    <th>Logged in from</th>
-    			</tr>
-		    </thead>
-		    <tbody id="get-users">
-		    </tbody>
-		</table>    
-            </div>
-            <!-- /widget-content -->
-          </div>
-          <!-- /widget -->
-         </div>
-	<!-- /span -->
+        <div class="span6">
+             <div class="widget widget-table action-table">
+                <div class="widget-header"> <i class="icon-group"></i>
+                  <h3>Online</h3>
+                  <div id="refresh-online">
+                  </div>
+                </div>
+                <!-- /widget-header -->
+                <div class="widget-content">
+                    <table class="table table-hover table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>TTY</th>
+                                <th>Logged in from</th>
+                            </tr>
+                        </thead>
+                        <tbody id="get-users">
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /widget-content -->
+             </div>
+              <!-- /widget -->
+        </div>
+	    <!-- /span -->
+        <div class="span6">
+             <div class="widget widget-table action-table">
+                <div class="widget-header"> <i class="icon-angle-down"></i>
+                  <h3>Netstat</h3>
+                  <div id="refresh-netstat">
+                  </div>
+                </div>
+                <!-- /widget-header -->
+                <div class="widget-content">
+                    <table class="table table-hover table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Local Address</th>
+                                <th>Foreign Address</th>
+                                <th>PID/Program Name</th>
+                            </tr>
+                        </thead>
+                        <tbody id="get-netstat">
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /widget-content -->
+             </div>
+              <!-- /widget -->
+        </div>
+	    <!-- /span -->
     </div>
     <!-- /row -->
 
@@ -357,6 +384,7 @@ function get_os_data(url, element) {
 
 var dashboard = {};
 
+
 dashboard.getUptime = function() {
         get_os_data('/info/uptime/', "#get-uptime");
         }
@@ -378,6 +406,17 @@ dashboard.getUsers = function() {
                 })
             tr+='';
             $("#get-users").html( tr );
+        });
+    }
+dashboard.getNetstat = function() {
+        $.getJSON('/info/getnetstat/', function(data) {
+            var tr='';
+            $.each( data, function( index, item){
+                tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td><td>'+item[2]+'</td></tr>';
+                })
+            tr+='';
+            console.log(tr);
+            $("#get-netstat").html( tr );
         });
     }
 dashboard.getProc = function() {
@@ -476,6 +515,7 @@ $(function() {
             window.setInterval('dashboard.getUptime()', {{ time_refresh_long }});
             window.setInterval('dashboard.getDisk()', {{ time_refresh_long }});
             window.setInterval('dashboard.getUsers()', {{ time_refresh_long }});
+            window.setInterval('dashboard.getNetstat()', {{ time_refresh_long }});
         });
 
 $(function pageLoad() {
@@ -488,6 +528,7 @@ $(function pageLoad() {
     dashboard.getUptime();
     dashboard.getDisk();
     dashboard.getUsers();
+    dashboard.getNetstat();
     dashboard.getIps();
     });
 </script>
