@@ -299,11 +299,12 @@ def get_netstat():
     Get ports and applications
     """
     try:
-        pipe = os.popen("netstat -tlnp |" + "grep 'LISTEN' |" + "awk '{print $4, $5, $7}'")
+        pipe = os.popen("ss -tlnp | awk '{print $4, $5, $6}'")
         data = pipe.read().strip().split('\n')
         pipe.close()
         
         data = [i.split(None, 3) for i in data]
+	del data[0]
     
     except Exception, err:
         data = str(err)
