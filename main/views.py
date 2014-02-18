@@ -299,11 +299,11 @@ def get_netstat():
     Get ports and applications
     """
     try:
-        pipe = os.popen("ss -tnp | grep ESTAB| awk '{print $4, $5}'")
+        pipe = os.popen("ss -tnp | grep ESTAB | awk '{print $4, $5}'| sed 's/::ffff://g' | awk -F: '{print $1, $2}' | sort -n | uniq -c")
         data = pipe.read().strip().split('\n')
         pipe.close()
         
-        data = [i.split(None, 3) for i in data]
+        data = [i.split(None, 4) for i in data]
     
     except Exception, err:
         data = str(err)
