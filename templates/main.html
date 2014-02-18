@@ -291,7 +291,6 @@
                             <tr>
                                 <th>Local</th>
                                 <th>Foreign</th>
-                                <th>PID/Program Name</th>
                             </tr>
                         </thead>
                         <tbody id="get-netstat">
@@ -412,7 +411,7 @@ dashboard.getNetstat = function() {
         $.getJSON('/info/getnetstat/', function(data) {
             var tr='';
             $.each( data, function( index, item){
-                tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td><td>'+item[2]+'</td></tr>';
+                tr+='<tr><td>'+item[0]+'</td><td>'+item[1]+'</td></tr>';
                 })
             tr+='';
             $("#get-netstat").html( tr );
