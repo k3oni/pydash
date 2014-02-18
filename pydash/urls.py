@@ -23,7 +23,8 @@ urlpatterns = patterns('',
     url(r'^info/gettraffic/$', 'usage.views.gettraffic', name='gettraffic'),
     url(r'^info/proc/$', 'usage.views.getproc', name='getproc'),
     url(r'^info/getdiskio/$', 'usage.views.getdiskio', name='getdiskio'),
-    url(r'^info/loadaverage/$', 'usage.views.loadaverage', name='loadaverage')
+    url(r'^info/loadaverage/$', 'usage.views.loadaverage', name='loadaverage'),
+    url(r'^info/getnetstat/$', 'usage.views.getnetstat', name='getnetstat')
 )
 
 urlpatterns += patterns('',

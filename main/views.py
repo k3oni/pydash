@@ -71,16 +71,16 @@ def get_ipaddress():
     Get the IP Address
     """
     try:
-	pipe = os.popen(" ip addr | grep -A3 'state UP' | awk '{printf \"%s,\",$2}'|awk -F, '{print $1, $2, $3}'")
-	data = pipe.read().strip().split('\n')
+	pipe = os.popen(" ip addr | grep -A3 'LOWER_UP' | awk '{printf \"%s,\",$2}'|awk -F,, '{print $1, $2, $3}'")
+	data = pipe.read().strip().split(' ')
 	pipe.close()
 
-	data = [i.split(None, 3) for i in data]
+	data = [n for n in data if not n.startswith(('lo', '127'))] 
+	data = [i.split(',', 3) for i in data]
+	
+	itf = []
 	for e in data:
-	    if len(e) > 3:
-		itf = dict(zip([iter(e[0].strip(':'))]))
-	    else:
-		itf = [e[0].strip(':')]
+	    itf.append(e[0].strip(':'))
 		
 	ips = {'interface': itf, 'itfip': data}
 	
@@ -255,7 +255,7 @@ def get_cpu_usage():
     """
     Get the CPU usage and running processes
     """
-    try:
+    try: 
 	pipe = os.popen("ps aux --sort -%cpu,-rss")
 	data = pipe.read().strip().split('\n')
 	pipe.close()
@@ -282,17 +282,38 @@ def get_cpu_usage():
 
     return data
 
+
 def get_load():
     """
     Get load average
     """
     try:
-	data = os.getloadavg()[0]
+        data = os.getloadavg()[0]
     except Exception, err:
-	data = str(err)
+        data = str(err)
 
     return data
+
+def get_netstat():
+    """
+    Get ports and applications
+    """
+    try:
+        pipe = os.popen("ss -tnp | grep ESTAB | awk '{print $4, $5}'| sed 's/::ffff://g' | awk -F: '{print $1, $2}' | sort -n | uniq -c")
+        data = pipe.read().strip().split('\n')
+        pipe.close()
+        
+        data = [i.split(None, 4) for i in data]
     
+    except Exception, err:
+        data = str(err)
+    
+    if data[0] == []:
+	data = [['No', 'data', 'available']]
+
+    return data
+
+
 @login_required(login_url='/login/')
 def getall(request):
 	
