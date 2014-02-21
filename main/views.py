@@ -317,11 +317,7 @@ def get_netstat():
 @login_required(login_url='/login/')
 def getall(request):
 	
-    return render_to_response('main.html', {'gethostname': get_platform()['hostname'],
-					    'getplatform': get_platform()['osname'],
-					    'getkernel': get_platform()['kernel'],
-					    'getcpus': get_cpus(),
-					    'time_refresh': time_refresh,
+    return render_to_response('main.html', {'time_refresh': time_refresh,
 					    'time_refresh_long': time_refresh_long,
 					    'time_refresh_net': time_refresh_net,
 					    'version': version

@@ -103,6 +103,21 @@ var dashboard = {};
 dashboard.getUptime = function() {
         get_os_data('/info/uptime/', "#get-uptime");
         }
+dashboard.getOSname = function() {
+        get_os_data('/info/platform/osname/', "#get-osname");
+        }
+dashboard.getHostname = function() {
+        get_os_data('/info/platform/hostname/', "#get-hostname");
+        }
+dashboard.getKernel = function() {
+        get_os_data('/info/platform/kernel/', "#get-kernel");
+        }
+dashboard.getCPUcount = function() {
+        get_os_data('/info/getcpus/count/', "#get-cpucount");
+        }
+dashboard.getCPUtype = function() {
+        get_os_data('/info/getcpus/type/', "#get-cputype");
+        }
 dashboard.getDisk = function() {
         $.getJSON('/info/getdisk/', function(data) {
             destroy_dataTable("get_disk");

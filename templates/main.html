@@ -72,11 +72,11 @@
             <div class="widget-content">
                 <br>
               <div style="text-align:center;">
-		<b>OS:</b> <span class=""></span>{{ getplatform }}<br>
+		<b>OS:</b> <span class="" id="get-osname"></span><br>
               	<b>Uptime:</b> <span class="" id="get-uptime"></span> Hours<br>
-              	<b>Hostname:</b> <span class=""></span>{{ gethostname }}<br>
-              	<b>Kernel:</b> <span class=""></span>{{ getkernel }}<br>
-		<b>CPU(s):</b> <span class=""></span>{{ getcpus.cpus }} x {{ getcpus.type }}
+              	<b>Hostname:</b> <span class="" id="get-hostname"></span><br>
+              	<b>Kernel:</b> <span class="" id="get-kernel"></span><br>
+		<b>CPU(s):</b> <span class="" id="get-cpucount"></span> x <span class="" id="get-cputype"></span>
               	<br><br>
               </div>
             </div>
@@ -407,7 +407,12 @@ $(function pageLoad() {
     cpuu_usage();
     traffic_usage();
     disk_io();
+    dashboard.getOSname();
     dashboard.getUptime();
+    dashboard.getHostname();
+    dashboard.getKernel();
+    dashboard.getCPUcount();
+    dashboard.getCPUtype();
     dashboard.getDisk();
     dashboard.getUsers();
     dashboard.getNetstat();
