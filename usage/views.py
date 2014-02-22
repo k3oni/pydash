@@ -49,6 +49,67 @@ def getnetstat(request):
     response['Content-Type'] = "text/javascript"
     response.write(data)
     return response
+    
+@login_required(login_url='/login/')
+def platform(request, name):
+    """
+    Return the hostname
+    """
+    getplatform = get_platform()
+    hostname = getplatform['hostname']
+    osname = getplatform['osname']
+    kernel = getplatform['kernel']
+    
+    if name == 'hostname':
+	try:
+	    data = hostname
+	except Exception:
+	    data = None
+
+    if name == 'osname':
+	try:
+	    data = osname
+	except Exception:
+	    data = None
+    
+    if name == 'kernel':
+	try:
+	    data = kernel
+	except Exception:
+	    data = None
+
+    data = json.dumps(data)	    
+    response = HttpResponse()
+    response['Content-Type'] = "text/javascript"
+    response.write(data)
+    return response
+    
+@login_required(login_url='/login/')
+def getcpus(request, name):
+    """
+    Return the CPU number and type/model
+    """
+    getcpus = get_cpus()
+    cputype = getcpus['type']
+    cpucount = getcpus['cpus']
+    
+    if name == 'type':
+	try:
+	    data = cputype
+	except Exception:
+	    data = None
+    
+    if name == 'count':
+	try:
+	    data = cpucount
+	except Exception:
+	    data = None
+    
+    data = json.dumps(data)
+    response = HttpResponse()
+    response['Content-Type'] = "text/javascript"
+    response.write(data)
+    return response
 
 
 @login_required(login_url='/login/')

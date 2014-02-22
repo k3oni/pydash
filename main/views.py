@@ -71,12 +71,12 @@ def get_ipaddress():
     Get the IP Address
     """
     try:
-	pipe = os.popen(" ip addr | grep -A3 'LOWER_UP' | awk '{printf \"%s,\",$2}'|awk -F,, '{print $1, $2, $3}'")
-	data = pipe.read().strip().split(' ')
+	pipe = os.popen(" ip addr | grep -A3 'LOWER_UP' | awk '{printf \"%s,\",$2}'|awk -F,, '{print $0}'")
+	data = pipe.read().strip().split(',,')
 	pipe.close()
 
 	data = [n for n in data if not n.startswith(('lo', '127'))] 
-	data = [i.split(',', 3) for i in data]
+	data = [i.split(',', 4) for i in data]
 	
 	itf = []
 	for e in data:
@@ -317,11 +317,7 @@ def get_netstat():
 @login_required(login_url='/login/')
 def getall(request):
 	
-    return render_to_response('main.html', {'gethostname': get_platform()['hostname'],
-					    'getplatform': get_platform()['osname'],
-					    'getkernel': get_platform()['kernel'],
-					    'getcpus': get_cpus(),
-					    'time_refresh': time_refresh,
+    return render_to_response('main.html', {'time_refresh': time_refresh,
 					    'time_refresh_long': time_refresh_long,
 					    'time_refresh_net': time_refresh_net,
 					    'version': version

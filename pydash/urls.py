@@ -24,6 +24,8 @@ urlpatterns = patterns('',
     url(r'^info/proc/$', 'usage.views.getproc', name='getproc'),
     url(r'^info/getdiskio/$', 'usage.views.getdiskio', name='getdiskio'),
     url(r'^info/loadaverage/$', 'usage.views.loadaverage', name='loadaverage'),
+    url(r'^info/platform/([\w\-\.]+)/$', 'usage.views.platform', name='platform'),
+    url(r'^info/getcpus/([\w\-\.]+)/$', 'usage.views.getcpus', name='getcpus'),
     url(r'^info/getnetstat/$', 'usage.views.getnetstat', name='getnetstat')
 )
 

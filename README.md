@@ -1,4 +1,4 @@
-pyDash - v1.3
+pyDash - v1.4
 ======
 
 A small web monitoring dashboard for your linux pc/server writen in Python and Django + Chart.js.
