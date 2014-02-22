@@ -128,9 +128,6 @@ def get_users():
     except Exception, err:
 	data = str(err)
     
-    if data[0] == []:
-	data = [['No', 'data', 'available']]
-    
     return data
 	
 def get_traffic(request):
@@ -308,9 +305,6 @@ def get_netstat():
     except Exception, err:
         data = str(err)
     
-    if data[0] == []:
-	data = [['No', 'data', 'available']]
-
     return data
 
 
