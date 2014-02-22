@@ -71,7 +71,10 @@ def get_ipaddress():
     Get the IP Address
     """
     try:
-	pipe = os.popen("ip addr | grep -A3 'LOWER_UP' | awk '{if ($2 == \"forever\"){printf \"unavailable,,\"} else{ printf \"%s,\",$2}}'|awk -F,, '{print $0}'")
+	if get_platform()['osname'] == "Linux":
+	    pipe = os.popen("ip addr | grep -A3 'LOWER_UP' | awk '{if ($2 == \"forever\"){printf \"unavailable,\"} else{ printf \"%s,\",$2}}'|awk -F,, '{print $0}'")
+	else:
+	    pipe = os.popen("ip addr | grep -A3 'LOWER_UP' | awk '{if ($2 == \"forever\"){printf \"unavailable,,\"} else{ printf \"%s,\",$2}}'|awk -F,, '{print $0}'")
 	data = pipe.read().strip().split(',,')
 	pipe.close()
 
