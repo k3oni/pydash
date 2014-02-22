@@ -152,7 +152,8 @@ dashboard.getUsers = function() {
                 aoColumns: [
                     { sTitle: "USER" },
                     { sTitle: "TTY" },
-                    { sTitle: "LOOGED IN FROM" }
+                    { sTitle: "LOOGED IN FROM",
+            	      sDefaultContent: "unavailable" }
                 ],
                 bPaginate: false,
                 bFilter: true,
@@ -231,7 +232,8 @@ dashboard.getIps = function() {
                     { sTitle: "INTERFACE" },
                     { sTitle: "MAC ADDRESS" },
                     { sTitle: "IPv4 ADDRESS" },
-                    { sTitle: "IPv6 ADDRESS" }
+                    { sTitle: "IPv6 ADDRESS",
+                      sDefaultContent: "unavailable" }
                 ],
                 bPaginate: false,
                 bFilter: true,
