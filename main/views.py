@@ -71,12 +71,15 @@ def get_ipaddress():
     Get the IP Address
     """
     try:
-	pipe = os.popen(" ip addr | grep -A3 'LOWER_UP' | awk '{printf \"%s,\",$2}'|awk -F,, '{print $0}'")
+	pipe = os.popen("ip addr | grep -A3 'LOWER_UP' | awk '{if ($2 == \"forever\"){printf \"unavailable,,\"} else{ printf \"%s,\",$2}}'|awk -F,, '{print $0}'")
 	data = pipe.read().strip().split(',,')
 	pipe.close()
 
-	data = [n for n in data if not n.startswith(('lo', '127'))] 
 	data = [i.split(',', 4) for i in data]
+	if len(data) == 2:
+	    del data[0]
+	if len(data) > 2:
+    	    data = data[1:-1]
 	
 	itf = []
 	for e in data:
