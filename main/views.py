@@ -129,8 +129,11 @@ def get_users():
 	data = pipe.read().strip().split('\n')
 	pipe.close()
 	
-	data = [i.split(None, 3) for i in data]
-
+	if data == [""]:
+	    data = None
+	else:
+	    data = [i.split(None, 3) for i in data]
+	    
     except Exception, err:
 	data = str(err)
     

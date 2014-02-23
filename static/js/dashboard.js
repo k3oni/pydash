@@ -153,11 +153,14 @@ dashboard.getUsers = function() {
                     { sTitle: "USER" },
                     { sTitle: "TTY" },
                     { sTitle: "LOOGED IN FROM",
-            	      sDefaultContent: "unavailable" }
+                	sDefaultContent: "unavailable" }
                 ],
-                bPaginate: false,
-                bFilter: true,
-                sDom: "lrtip",
+                aaSorting: [
+            	    [0, "desc"]
+                ],
+                bPaginate: true,
+                sPaginationType: "two_button",
+                bFilter: false,
                 bAutoWidth: false,
                 bInfo: false
             }).fadeIn();
