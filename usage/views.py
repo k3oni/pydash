@@ -244,7 +244,7 @@ def memusage(request):
     if not cookies:
         datasets.append(0)
     else:
-        datasets = eval(cookies)
+        datasets = json.loads(cookies)
     if len(datasets) > 10:
         while datasets:
             del datasets[0]
@@ -303,7 +303,7 @@ def loadaverage(request):
     if not cookies:
         datasets.append(0)
     else:
-        datasets = eval(cookies)
+        datasets = json.loads(cookies)
     if len(datasets) > 10:
         while datasets:
             del datasets[0]
@@ -375,7 +375,7 @@ def gettraffic(request):
         datasets_out.append(0)
         datasets_out_o.append(0)
     else:
-        datasets = eval(cookies)
+        datasets = json.loads(cookies)
         datasets_in = datasets[0]
         datasets_out = datasets[1]
 	datasets_in_i = datasets[2]
@@ -498,7 +498,7 @@ def getdiskio(request):
         datasets_out.append(0)
         datasets_out_o.append(0)
     else:
-        datasets = eval(cookies)
+        datasets = json.loads(cookies)
         datasets_in = datasets[0]
         datasets_out = datasets[1]
 	datasets_in_i = datasets[2]
