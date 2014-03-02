@@ -250,3 +250,12 @@ dashboard.getIps = function() {
         });
 }
 
+//Expand-Collapse div/table
+jQuery(document).ready(function() {
+  jQuery(".widget-content").show();
+    //toggle the componenet with class msg_body
+    jQuery(".widget-header").click(function()
+    {
+     jQuery(this).next(".widget-content").slideToggle(500);
+    });
+});
