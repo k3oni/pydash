@@ -250,7 +250,7 @@ dashboard.getIps = function() {
         });
 }
 
-//Expand-Collapse div/table
+//Expand-Contract div/table
 jQuery(document).ready(function() {
   jQuery(".widget-content").show();
     //toggle the componenet with class msg_body
