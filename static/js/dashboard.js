@@ -251,11 +251,11 @@ dashboard.getIps = function() {
 }
 
 //Expand-Contract div/table
-jQuery(document).ready(function() {
-  jQuery(".widget-content").show();
-    //toggle the componenet with class msg_body
-    jQuery(".widget-header").click(function()
+$(document).ready(function() {
+  $(".widget-content").show();
+    $(".widget-header").click(function()
     {
-     jQuery(this).next(".widget-content").slideToggle(500);
+     $(this).next(".widget-content").slideToggle(500);
+     $("i",this).toggleClass("icon-minus icon-plus");
     });
 });
