@@ -17,7 +17,7 @@ __[View Demo](http://pydash.hostechs.com/)__
      pass: admin
 
 
-![pyDash](https://www.yaktab.com/en/2btxew)
+![pyDash](https://www.yaktab.com/en/2btxe)
 
 
 Installation
