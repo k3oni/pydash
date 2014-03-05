@@ -67,3 +67,7 @@ Credits
 [Dashboard Template](http://www.egrappler.com/templatevamp-free-twitter-bootstrap-admin-template/), 
 [Bootstrap](http://getbootstrap.com/), 
 [Font Awesome](http://fontawesome.io/)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/k3oni/pydash/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
