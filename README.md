@@ -69,5 +69,5 @@ Credits
 [Font Awesome](http://fontawesome.io/)
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/k3oni/pydash/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+Follow [@hostechs](https://twitter.com/hostechs) on Twitter
 
