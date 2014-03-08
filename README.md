@@ -71,3 +71,4 @@ Credits
 
 Follow [@hostechs](https://twitter.com/hostechs) on Twitter
 
+[![Flattr this](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/2630601/k3onipydash-on-GitHub "Flattr this")
