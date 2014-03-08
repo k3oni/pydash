@@ -153,11 +153,14 @@ dashboard.getUsers = function() {
                     { sTitle: "USER" },
                     { sTitle: "TTY" },
                     { sTitle: "LOOGED IN FROM",
-            	      sDefaultContent: "unavailable" }
+                	sDefaultContent: "unavailable" }
                 ],
-                bPaginate: false,
-                bFilter: true,
-                sDom: "lrtip",
+                aaSorting: [
+            	    [0, "desc"]
+                ],
+                bPaginate: true,
+                sPaginationType: "two_button",
+                bFilter: false,
                 bAutoWidth: false,
                 bInfo: false
             }).fadeIn();
@@ -247,3 +250,12 @@ dashboard.getIps = function() {
         });
 }
 
+//Expand-Contract div/table
+$(document).ready(function() {
+  $(".widget-content").show();
+    $(".widget-header").click(function()
+    {
+     $(this).next(".widget-content").slideToggle(500);
+     $("i",this).toggleClass("icon-minus icon-plus");
+    });
+});
