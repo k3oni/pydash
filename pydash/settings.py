@@ -18,8 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1)$crmowu-23tz@i2-d=7tb3t+1u&(pm!lnjyuarki^72h!3af'
-
+#SECRET_KEY = '1)$crmowu-23tz@i2-d=7tb3t+1u&(pm!lnjyuarki^72h!3af'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -36,7 +35,7 @@ TIME_JS_REFRESH = 30000
 TIME_JS_REFRESH_LONG = 120000
 TIME_JS_REFRESH_NET = 2000
 
-VERSION = "1.4.2"
+VERSION = "1.4.3"
 
 ALLOWED_HOSTS = ['*']
 
