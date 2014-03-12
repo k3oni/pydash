@@ -69,6 +69,6 @@ Credits
 [Font Awesome](http://fontawesome.io/)
 
 
-Follow [@hostechs](https://twitter.com/hostechs) on Twitter
+[![Follow @hostechs](https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_32.png)](https://twitter.com/hostechs)    [![View Profile](https://dlc1-s.licdn.com/sites/default/files/InBug-30px-R.png)](http://www.linkedin.com/in/hostechs/)
 
 [![Flattr this](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/2630601/k3onipydash-on-GitHub "Flattr this")
