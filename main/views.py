@@ -70,31 +70,31 @@ def get_ipaddress():
     """
     Get the IP Address
     """
+    data = []
     try:
-	if get_platform()['osname'] == "Linux":
-	    pipe = os.popen("ip addr | grep -A3 'LOWER_UP' | awk '{if ($2 == \"forever\"){printf \"unavailable,\"} else{ printf \"%s,\",$2}}'|awk -F,, '{print $0}'")
-	else:
-	    pipe = os.popen("ip addr | grep -A3 'LOWER_UP' | awk '{if ($2 == \"forever\"){printf \"unavailable,,\"} else{ printf \"%s,\",$2}}'|awk -F,, '{print $0}'")
-	data = pipe.read().strip().split(',,')
-	pipe.close()
+        eth = os.popen("ip addr | grep LOWER_UP | awk '{print $2}'")
+        iface = eth.read().strip().replace(':','').split('\n')
+        eth.close()
+        del iface[0]
 
-	data = [i.split(',', 4) for i in data]
-	if len(data) == 2:
-	    del data[0]
-	if len(data) > 2:
-    	    data = data[1:-1]
-	
-	itf = []
-	for e in data:
-	    itf.append(e[0].strip(':'))
-		
-	ips = {'interface': itf, 'itfip': data}
-	
-	data = ips
-	
-    except Exception,err: 
-	data =  str(err)
-    
+        for i in iface:
+            pipe = os.popen("ip addr show " + i + "| awk '{if ($2 == \"forever\"){!$2} else {print $2}}'")
+            data1 = pipe.read().strip().split('\n')
+            pipe.close()
+            if len(data1) == 2:
+                data1.append('unavailable', 'unavailable')
+            if len(data1) == 3:
+                data1.append('unavailable')
+            data1[0] = i
+            data.append(data1)
+
+        ips = {'interface': iface, 'itfip': data}
+
+        data = ips
+
+    except Exception,err:
+        data =  str(err)
+
     return data
 
 def get_cpus():
@@ -248,7 +248,7 @@ def get_mem():
 	percent = (100 - ((freemem * 100) / allmem))
 	usage = (allmem - freemem)
 	
-	mem_usage = {'usage': usage, 'percent': percent}
+	mem_usage = {'usage': usage, 'free': freemem, 'percent': percent}
 	
 	data = mem_usage
 	

@@ -234,8 +234,8 @@ dashboard.getIps = function() {
                 aoColumns: [
                     { sTitle: "INTERFACE" },
                     { sTitle: "MAC ADDRESS" },
-                    { sTitle: "IPv4 ADDRESS" },
-                    { sTitle: "IPv6 ADDRESS",
+                    { sTitle: "IP ADDRESS" },
+                    { sTitle: "IP ADDRESS",
                       sDefaultContent: "unavailable" }
                 ],
                 bPaginate: false,
