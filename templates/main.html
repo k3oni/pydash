@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <title>{% block title %}PyDash v{{ version }}{% endblock %}</title>
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
@@ -61,22 +61,20 @@
         
         <div class="span3">
          <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-info-sign"></i>
-              <h3>General Info</h3>
-              
+            <div class="widget-header"> <i class="icon-dashboard"></i>
+              <h3>General Info</h3><i class="icon-minus"></i>
               <div id="refresh-os">
               </div>
-                
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
                 <br>
               <div style="text-align:center;">
-		<b>OS:</b> <span class=""></span>{{ getplatform }}<br>
+		<b>OS:</b> <span class="" id="get-osname"></span><br>
               	<b>Uptime:</b> <span class="" id="get-uptime"></span> Hours<br>
-              	<b>Hostname:</b> <span class=""></span>{{ gethostname }}<br>
-              	<b>Kernel:</b> <span class=""></span>{{ getkernel }}<br>
-		<b>CPU(s):</b> <span class=""></span>{{ getcpus.cpus }} x {{ getcpus.type }}
+              	<b>Hostname:</b> <span class="" id="get-hostname"></span><br>
+              	<b>Kernel:</b> <span class="" id="get-kernel"></span><br>
+		<b>CPU(s):</b> <span class="" id="get-cpucount"></span> x <span class="" id="get-cputype"></span>
               	<br><br>
               </div>
             </div>
@@ -87,8 +85,8 @@
         
         <div class="span3">
          <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-info-sign"></i>
-              <h3>CPU Usage %</h3>
+            <div class="widget-header"> <i class="icon-check"></i>
+              <h3>CPU Usage %</h3><i class="icon-minus"></i>
               <div id="refresh-cpu">
               </div>
             </div>
@@ -108,16 +106,19 @@
         
         <div class="span6">
          <div class="widget widget-nopad">
-            <div class="widget-header">
-                <i class="icon-list-alt"></i>
-                <h3>Memory Usage</h3>
+            <div class="widget-header"> <i class="icon-list-alt"></i>
+                <h3>Memory Usage</h3><i class="icon-minus"></i>
                 <div id="refresh-ram">
                 </div>
             </div>
             <!-- /widget-header -->
                 <div class="widget-content">
                     <p></p>
-                    <canvas id="memoryChart" width="560" height="200"></canvas>                                                     
+                    <canvas id="memoryChart" width="560" height="200"></canvas>
+                    <div>
+        		<span class="memf">{% trans "Free" %}</span>
+        		<span class="memu">{% trans "Used" %}</span>
+    		    </div>
                 </div>
                 <!-- /widget-content -->
                 
@@ -130,7 +131,7 @@
          <div class="span6">
            <div class="widget widget-table action-table">
             <div class="widget-header"> <i class="icon-hdd"></i>
-              <h3>Disk Usage</h3>
+              <h3>Disk Usage</h3><i class="icon-minus"></i>
               <div id="refresh-df">
               </div>
             </div>
@@ -146,7 +147,7 @@
           <div class="span6">
             <div class="widget widget-table action-table">
             <div class="widget-header"> <i class="icon-bolt"></i>
-              <h3>Load Average</h3>
+              <h3>Load Average</h3><i class="icon-minus"></i>
               <div id="refresh-load">
               </div>
             </div>
@@ -167,8 +168,8 @@
       <div class="row">
     	<div class="span6">
            <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-monitor"></i>
-              <h3>IP Adresses</h3>
+            <div class="widget-header"> <i class="icon-level-up"></i>
+              <h3>IP Adresses</h3><i class="icon-minus"></i>
               <div id="refresh-ip">
               </div>
             </div>
@@ -185,8 +186,8 @@
     
          <div class="span3">
            <div class="widget">
-            <div class="widget-header"> <i class="icon-monitor"></i>
-              <h3>Internet Traffic</h3>
+            <div class="widget-header"> <i class="icon-exchange"></i>
+              <h3>Internet Traffic</h3><i class="icon-minus"></i>
               <div id="refresh-ispeed">
               </div>
             </div>
@@ -207,8 +208,8 @@
          
          <div class="span3">
            <div class="widget">
-            <div class="widget-header"> <i class="icon-monitor"></i>
-              <h3>Disk Reads/Writes</h3>
+            <div class="widget-header"> <i class="icon-angle-up"></i>
+              <h3>Disk Reads/Writes</h3><i class="icon-minus"></i>
               <div id="refresh-diskio">
               </div>
             </div>
@@ -233,7 +234,7 @@
         <div class="span6">
              <div class="widget widget-table action-table">
                 <div class="widget-header"> <i class="icon-group"></i>
-                  <h3>Online</h3>
+                  <h3>Online</h3><i class="icon-minus"></i>
                   <div id="refresh-online">
                   </div>
                 </div>
@@ -250,7 +251,7 @@
         <div class="span6">
              <div class="widget widget-table action-table">
                 <div class="widget-header"> <i class="icon-angle-down"></i>
-                  <h3>Netstat</h3>
+                  <h3>Netstat</h3><i class="icon-minus"></i>
                   <div id="refresh-netstat">
                   </div>
                 </div>
@@ -270,8 +271,8 @@
       <div class="row">
         <div class="span12">
           <div class="widget">
-            <div class="widget-header"> <i class="icon-dashboard"></i>
-              <h3> Processes </h3>
+            <div class="widget-header"> <i class="icon-list-alt"></i>
+              <h3> Processes </h3><i class="icon-minus"></i>
               <div id="refresh-ps">
               </div>
             </div>
@@ -407,7 +408,12 @@ $(function pageLoad() {
     cpuu_usage();
     traffic_usage();
     disk_io();
+    dashboard.getOSname();
     dashboard.getUptime();
+    dashboard.getHostname();
+    dashboard.getKernel();
+    dashboard.getCPUcount();
+    dashboard.getCPUtype();
     dashboard.getDisk();
     dashboard.getUsers();
     dashboard.getNetstat();

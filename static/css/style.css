@@ -410,12 +410,8 @@ textarea {
 
 .widget-content {
 	padding: 20px 15px 15px;
-	
 	background: #FFF;
-	
-	
 	border: 1px solid #D5D5D5;
-	
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
@@ -423,7 +419,6 @@ textarea {
 
 .widget-header+.widget-content {
 	border-top: none;
-	
 	-webkit-border-top-left-radius: 0;
 	-webkit-border-top-right-radius: 0;
 	-moz-border-radius-topleft: 0;

@@ -403,3 +403,19 @@ h6.bigstats {
     padding: 0 0.3em;
     border-style: solid;
 }
+.memf {
+    border-color: rgb(43,214,66);
+    margin: 0.5em;
+    border-style: solid;
+    border-width: 0 0 0 1em;
+    padding: 0 0.3em;
+    border-style: solid;
+}
+.memu {
+    border-color: rgb(249,134,33);
+    margin: 0.5em;
+    border-style: solid;
+    border-width: 0 0 0 1em;
+    padding: 0 0.3em;
+    border-style: solid;
+}

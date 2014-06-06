@@ -70,25 +70,31 @@ def get_ipaddress():
     """
     Get the IP Address
     """
+    data = []
     try:
-	pipe = os.popen(" ip addr | grep -A3 'LOWER_UP' | awk '{printf \"%s,\",$2}'|awk -F,, '{print $0}'")
-	data = pipe.read().strip().split(',,')
-	pipe.close()
+        eth = os.popen("ip addr | grep LOWER_UP | awk '{print $2}'")
+        iface = eth.read().strip().replace(':','').split('\n')
+        eth.close()
+        del iface[0]
 
-	data = [n for n in data if not n.startswith(('lo', '127'))] 
-	data = [i.split(',', 4) for i in data]
-	
-	itf = []
-	for e in data:
-	    itf.append(e[0].strip(':'))
-		
-	ips = {'interface': itf, 'itfip': data}
-	
-	data = ips
-	
-    except Exception,err: 
-	data =  str(err)
-    
+        for i in iface:
+            pipe = os.popen("ip addr show " + i + "| awk '{if ($2 == \"forever\"){!$2} else {print $2}}'")
+            data1 = pipe.read().strip().split('\n')
+            pipe.close()
+            if len(data1) == 2:
+                data1.append('unavailable', 'unavailable')
+            if len(data1) == 3:
+                data1.append('unavailable')
+            data1[0] = i
+            data.append(data1)
+
+        ips = {'interface': iface, 'itfip': data}
+
+        data = ips
+
+    except Exception,err:
+        data =  str(err)
+
     return data
 
 def get_cpus():
@@ -123,13 +129,13 @@ def get_users():
 	data = pipe.read().strip().split('\n')
 	pipe.close()
 	
-	data = [i.split(None, 3) for i in data]
-
+	if data == [""]:
+	    data = None
+	else:
+	    data = [i.split(None, 3) for i in data]
+	    
     except Exception, err:
 	data = str(err)
-    
-    if data[0] == []:
-	data = [['No', 'data', 'available']]
     
     return data
 	
@@ -242,7 +248,7 @@ def get_mem():
 	percent = (100 - ((freemem * 100) / allmem))
 	usage = (allmem - freemem)
 	
-	mem_usage = {'usage': usage, 'percent': percent}
+	mem_usage = {'usage': usage, 'free': freemem, 'percent': percent}
 	
 	data = mem_usage
 	
@@ -308,20 +314,13 @@ def get_netstat():
     except Exception, err:
         data = str(err)
     
-    if data[0] == []:
-	data = [['No', 'data', 'available']]
-
     return data
 
 
 @login_required(login_url='/login/')
 def getall(request):
 	
-    return render_to_response('main.html', {'gethostname': get_platform()['hostname'],
-					    'getplatform': get_platform()['osname'],
-					    'getkernel': get_platform()['kernel'],
-					    'getcpus': get_cpus(),
-					    'time_refresh': time_refresh,
+    return render_to_response('main.html', {'time_refresh': time_refresh,
 					    'time_refresh_long': time_refresh_long,
 					    'time_refresh_net': time_refresh_net,
 					    'version': version

@@ -103,6 +103,21 @@ var dashboard = {};
 dashboard.getUptime = function() {
         get_os_data('/info/uptime/', "#get-uptime");
         }
+dashboard.getOSname = function() {
+        get_os_data('/info/platform/osname/', "#get-osname");
+        }
+dashboard.getHostname = function() {
+        get_os_data('/info/platform/hostname/', "#get-hostname");
+        }
+dashboard.getKernel = function() {
+        get_os_data('/info/platform/kernel/', "#get-kernel");
+        }
+dashboard.getCPUcount = function() {
+        get_os_data('/info/getcpus/count/', "#get-cpucount");
+        }
+dashboard.getCPUtype = function() {
+        get_os_data('/info/getcpus/type/', "#get-cputype");
+        }
 dashboard.getDisk = function() {
         $.getJSON('/info/getdisk/', function(data) {
             destroy_dataTable("get_disk");
@@ -137,11 +152,15 @@ dashboard.getUsers = function() {
                 aoColumns: [
                     { sTitle: "USER" },
                     { sTitle: "TTY" },
-                    { sTitle: "LOOGED IN FROM" }
+                    { sTitle: "LOOGED IN FROM",
+                	sDefaultContent: "unavailable" }
                 ],
-                bPaginate: false,
-                bFilter: true,
-                sDom: "lrtip",
+                aaSorting: [
+            	    [0, "desc"]
+                ],
+                bPaginate: true,
+                sPaginationType: "two_button",
+                bFilter: false,
                 bAutoWidth: false,
                 bInfo: false
             }).fadeIn();
@@ -215,8 +234,9 @@ dashboard.getIps = function() {
                 aoColumns: [
                     { sTitle: "INTERFACE" },
                     { sTitle: "MAC ADDRESS" },
-                    { sTitle: "IPv4 ADDRESS" },
-                    { sTitle: "IPv6 ADDRESS" }
+                    { sTitle: "IP ADDRESS" },
+                    { sTitle: "IP ADDRESS",
+                      sDefaultContent: "unavailable" }
                 ],
                 bPaginate: false,
                 bFilter: true,
@@ -230,3 +250,12 @@ dashboard.getIps = function() {
         });
 }
 
+//Expand-Contract div/table
+$(document).ready(function() {
+  $(".widget-content").show();
+    $(".widget-header").click(function()
+    {
+     $(this).next(".widget-content").slideToggle(500);
+     $("i",this).toggleClass("icon-minus icon-plus");
+    });
+});

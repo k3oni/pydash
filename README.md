@@ -1,7 +1,11 @@
-pyDash - v1.4
+pyDash - v1.4.4  [![Follow @hostechs](https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_32.png)](https://twitter.com/hostechs)    [![View Profile](https://dlc1-s.licdn.com/sites/default/files/InBug-30px-R.png)](http://www.linkedin.com/in/hostechs/)
 ======
 
-A small web monitoring dashboard for your linux pc/server writen in Python and Django + Chart.js.
+
+[![Flattr this](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/2630601/k3onipydash-on-GitHub "Flattr this")
+
+
+A small web-based monitoring dashboard for your linux pc/server writen in Python and Django + Chart.js.
 
 The dashboard is built using only Python libraries available in the main Python distribution, trying to create a small list of dependencies without the need of installing many packages or libraries.
 

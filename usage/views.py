@@ -49,6 +49,67 @@ def getnetstat(request):
     response['Content-Type'] = "text/javascript"
     response.write(data)
     return response
+    
+@login_required(login_url='/login/')
+def platform(request, name):
+    """
+    Return the hostname
+    """
+    getplatform = get_platform()
+    hostname = getplatform['hostname']
+    osname = getplatform['osname']
+    kernel = getplatform['kernel']
+    
+    if name == 'hostname':
+	try:
+	    data = hostname
+	except Exception:
+	    data = None
+
+    if name == 'osname':
+	try:
+	    data = osname
+	except Exception:
+	    data = None
+    
+    if name == 'kernel':
+	try:
+	    data = kernel
+	except Exception:
+	    data = None
+
+    data = json.dumps(data)	    
+    response = HttpResponse()
+    response['Content-Type'] = "text/javascript"
+    response.write(data)
+    return response
+    
+@login_required(login_url='/login/')
+def getcpus(request, name):
+    """
+    Return the CPU number and type/model
+    """
+    getcpus = get_cpus()
+    cputype = getcpus['type']
+    cpucount = getcpus['cpus']
+    
+    if name == 'type':
+	try:
+	    data = cputype
+	except Exception:
+	    data = None
+    
+    if name == 'count':
+	try:
+	    data = cpucount
+	except Exception:
+	    data = None
+    
+    data = json.dumps(data)
+    response = HttpResponse()
+    response['Content-Type'] = "text/javascript"
+    response.write(data)
+    return response
 
 
 @login_required(login_url='/login/')
@@ -168,7 +229,9 @@ def memusage(request):
     """
     Return Memory Usage in % and numeric
     """
-    datasets = []
+    datasets_free = []
+    datasets_used = []
+    cookie_memory = {}
 
     try:
         mem_usage = get_mem()
@@ -181,26 +244,40 @@ def memusage(request):
         cookies = None
 
     if not cookies:
-        datasets.append(0)
+        datasets_free.append(0)
+        datasets_used.append(0)
     else:
-        datasets = eval(cookies)
-    if len(datasets) > 10:
-        while datasets:
-            del datasets[0]
-            if len(datasets) == 10:
+        datasets = json.loads(cookies)
+        datasets_free = datasets[0]
+        datasets_used = datasets[1]
+        
+    if len(datasets_free) > 10:
+        while datasets_free:
+            del datasets_free[0]
+            if len(datasets_free) == 10:
                 break
-    if len(datasets) <= 9:
-        datasets.append(int(mem_usage['usage']))
-    if len(datasets) == 10:
-        datasets.append(int(mem_usage['usage']))
-        del datasets[0]
+    if len(datasets_used) > 10:
+        while datasets_used:
+            del datasets_used[0]
+            if len(datasets_used) == 10:
+                break
+    if len(datasets_free) <= 9:
+        datasets_free.append(int(mem_usage['free']))
+    if len(datasets_free) == 10:
+        datasets_free.append(int(mem_usage['free']))
+        del datasets_free[0]
+    if len(datasets_used) <= 9:
+        datasets_used.append(int(mem_usage['usage']))
+    if len(datasets_used) == 10:
+        datasets_used.append(int(mem_usage['usage']))
+        del datasets_used[0]
 
     # Some fix division by 0 Chart.js
-    if len(datasets) == 10:
-        if sum(datasets) == 0:
-            datasets[9] += 0.1
-        if sum(datasets) / 10 == datasets[0]:
-            datasets[9] += 0.1
+    if len(datasets_free) == 10:
+        if sum(datasets_free) == 0:
+            datasets_free[9] += 0.1
+        if sum(datasets_free) / 10 == datasets_free[0]:
+            datasets_free[9] += 0.1
 
     memory = {
         'labels': [""] * 10,
@@ -210,15 +287,23 @@ def memusage(request):
                 "strokeColor": "rgba(249,134,33,1)",
                 "pointColor": "rgba(249,134,33,1)",
                 "pointStrokeColor": "#fff",
-                "data": datasets
+                "data": datasets_used
+            },
+            {
+                "fillColor": "rgba(43,214,66,0.5)",
+                "strokeColor": "rgba(43,214,66,1)",
+                "pointColor": "rgba(43,214,66,1)",
+                "pointStrokeColor": "#fff",
+                "data": datasets_free
             }
         ]
     }
     
+    cookie_memory = [datasets_free, datasets_used]
     data = json.dumps(memory)
     response = HttpResponse()
     response['Content-Type'] = "text/javascript"
-    response.cookies['memory_usage'] = datasets
+    response.cookies['memory_usage'] = cookie_memory
     response.write(data)
     return response
 
@@ -242,7 +327,7 @@ def loadaverage(request):
     if not cookies:
         datasets.append(0)
     else:
-        datasets = eval(cookies)
+        datasets = json.loads(cookies)
     if len(datasets) > 10:
         while datasets:
             del datasets[0]
@@ -314,7 +399,7 @@ def gettraffic(request):
         datasets_out.append(0)
         datasets_out_o.append(0)
     else:
-        datasets = eval(cookies)
+        datasets = json.loads(cookies)
         datasets_in = datasets[0]
         datasets_out = datasets[1]
 	datasets_in_i = datasets[2]
@@ -437,7 +522,7 @@ def getdiskio(request):
         datasets_out.append(0)
         datasets_out_o.append(0)
     else:
-        datasets = eval(cookies)
+        datasets = json.loads(cookies)
         datasets_in = datasets[0]
         datasets_out = datasets[1]
 	datasets_in_i = datasets[2]
