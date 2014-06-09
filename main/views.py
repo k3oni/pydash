@@ -310,7 +310,6 @@ def get_netstat():
         pipe.close()
         
         data = [i.split(None, 4) for i in data]
-#    	data[:] = [e for e in data if len(e) == 4]
     	
     except Exception, err:
         data = str(err)
