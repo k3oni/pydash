@@ -116,9 +116,8 @@ Bootstrap Admin Template by EGrappler.com
 
 .news-items li {
 	display: table;
-	padding: 0 2em 0 1.5em;
-	padding-bottom: 1em;
-	margin-bottom: 1em;
+    padding: 0 2em 1em 1.5em;
+    margin-bottom: 1em;
 	border-bottom: 1px dotted #CCC;
 }
 
@@ -190,7 +189,7 @@ Bootstrap Admin Template by EGrappler.com
 }
 	
 .action-table .td-actions .btn:last-child { 
-	margin-rigth: 0; 		
+	margin-right: 0;
 }
 	
 	
@@ -221,10 +220,9 @@ Bootstrap Admin Template by EGrappler.com
 #big_stats .stat i { color:#19bc9c; }
 
 h6.bigstats {
-	margin: 20px;
-	border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #eee;
 	padding-bottom: 20px;
-	margin-bottom: 26px;
+    margin: 20px 20px 26px;
 }
 
 #big_stats .stat:first-child {
@@ -318,9 +316,9 @@ h6.bigstats {
 	}
 }
 
-.widget-content { padding:0px; }
+.widget-content { padding:0; }
 .dataTables_length { display:none; }
-.dataTable { margin-bottom:0px; }
+.dataTable { margin-bottom:0; }
 
 .pulse {
    background:#19bc9c;
@@ -351,71 +349,55 @@ h6.bigstats {
 }
 .dataTables_paginate{ width:100%; text-align:center; margin-top:10px; margin-left:-30px;}
 .dataTables_paginate a{ margin-left:8px;}
-.dataTables_paginate a:hover{ pointer:pointer;}
-.navbar-fixed-top{  margin-left:0px;}
+.dataTables_paginate a:hover{ cursor:pointer;}
+.navbar-fixed-top{  margin-left:0;}
 .widget-search{display: inline-block; vertical-align: middle; margin: 0 6px; width: 200px;}
 
 .netin {
-    border-color: rgb(105,210,231);
     margin: 0.5em;
-    border-style: solid;
-    border-width: 0 0 0 1em;
+    border: 0 solid rgb(105, 210, 231);
+    border-left-width: 1em;
     padding: 0 0.3em;
-    border-style: solid;
 }
 .netout {
-    border-color: rgb(227,48,81);
     margin: 0.5em;
-    border-style: solid;
-    border-width: 0 0 0 1em;
+    border: 0 solid rgb(227, 48, 81);
+    border-left-width: 1em;
     padding: 0 0.3em;
-    border-style: solid;
 }
 .cpuu {
-    border-color: rgb(247,70,74);
     margin: 0.5em;
-    border-style: solid;
-    border-width: 0 0 0 1em;
+    border: 0 solid rgb(247, 70, 74);
+    border-left-width: 1em;
     padding: 0 0.3em;
-    border-style: solid;
 }
 .cpuf {
-    border-color: rgb(10,209,27);
     margin: 0.5em;
-    border-style: solid;
-    border-width: 0 0 0 1em;
+    border: 0 solid rgb(10, 209, 27);
+    border-left-width: 1em;
     padding: 0 0.3em;
-    border-style: solid;
 }
 .diskr {
-    border-color: rgb(245,134,15);
     margin: 0.5em;
-    border-style: solid;
-    border-width: 0 0 0 1em;
+    border: 0 solid rgb(245, 134, 15);
+    border-left-width: 1em;
     padding: 0 0.3em;
-    border-style: solid;
 }
 .diskw {
-    border-color: rgb(15,103,245);
     margin: 0.5em;
-    border-style: solid;
-    border-width: 0 0 0 1em;
+    border: 0 solid rgb(15, 103, 245);
+    border-left-width: 1em;
     padding: 0 0.3em;
-    border-style: solid;
 }
 .memf {
-    border-color: rgb(43,214,66);
     margin: 0.5em;
-    border-style: solid;
-    border-width: 0 0 0 1em;
+    border: 0 solid rgb(43, 214, 66);
+    border-left-width: 1em;
     padding: 0 0.3em;
-    border-style: solid;
 }
 .memu {
-    border-color: rgb(249,134,33);
     margin: 0.5em;
-    border-style: solid;
-    border-width: 0 0 0 1em;
+    border: 0 solid rgb(249, 134, 33);
+    border-left-width: 1em;
     padding: 0 0.3em;
-    border-style: solid;
 }
