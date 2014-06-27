@@ -25,7 +25,7 @@ input,
 button,
 select,
 textarea {
-  font-family: 'Open Sans';
+  font-family: 'Open Sans',sans-serif;
 }
 
 .dropdown .dropdown-menu {
@@ -214,11 +214,10 @@ textarea {
 .subnavbar .dropdown-menu::before {
 	content: '';
 	display: inline-block;
-	border-left: 7px solid transparent;
-	border-right: 7px solid transparent;
-	border-bottom: 7px solid #CCC;
-	border-bottom-color: rgba(0, 0, 0, 0.2);
-	position: absolute;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid rgba(0, 0, 0, 0.2);
+    border-left: 7px solid transparent;
+    position: absolute;
 	top: -7px;
 	left: 9px;
 }
@@ -492,9 +491,8 @@ textarea {
 	
 }
 
-.widget-box .widget-content {	
-	background: #E3E3E3;	
-	background: #FFF;
+.widget-box .widget-content {
+	background: #E3E3E3;
 }
 
 
@@ -585,23 +583,20 @@ ul.messages_layout li .message_wrap {
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	position: relative;
-	border: 1px solid #e9e9e9;
 	padding: 10px;
 	border: 1px solid #cbcbcb;
 	margin-bottom: 20px;
 	float: left;
 	background: #fefefe;
-	-webkit-box-shadow: rgba(0,0,0,0.1) 0 1px 0px;
-	-moz-box-shadow: rgba(0,0,0,0.1) 0 1px 0px;
-	box-shadow: rgba(0,0,0,0.1) 0 1px 0px
+	-webkit-box-shadow: rgba(0,0,0,0.1) 0 1px 0;
+	-moz-box-shadow: rgba(0,0,0,0.1) 0 1px 0;
+	box-shadow: rgba(0,0,0,0.1) 0 1px 0
 }
 ul.messages_layout li .message_wrap .arrow {
 	background-position: 0 -228px;
 	height: 15px;
 	width: 12px;
-	height: 15px;
-	width: 12px;
-	position: absolute;
+    position: absolute;
 	left: -12px;
 	top: 13px
 }
@@ -849,9 +844,8 @@ html .fc, .fc table {
 	display: none
 }
 .fc-event {
-	border-style: solid;
-	border-width: 0;
-	font-size: .85em;
+    border: 0 solid;
+    font-size: .85em;
 	cursor: default
 }
 a.fc-event, .fc-event-draggable {
@@ -872,9 +866,8 @@ a.fc-event {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	border-style: solid;
-	border-width: 0;
-	overflow: hidden
+    border: 0 solid;
+    overflow: hidden
 }
 .fc-event-time, .fc-event-title {
 	padding: 0 1px
@@ -954,7 +947,7 @@ table.fc-border-separate {
 	border-right-width: 1px
 }
 .fc-border-separate tr.fc-last th, .fc-border-separate tr.fc-last td {
-	border-bottom-width: 0px
+	border-bottom-width: 0
 }
 .fc-first {
 	border-left-width: 0 !important
@@ -1083,12 +1076,14 @@ table.fc-border-separate {
 .fc-agenda .ui-resizable-resizing {
 	_overflow: hidden
 }
-.fc-header-left .fc-button-prev .fc-button-inner {background: url('../img/icons-sa7c41345d9.png') no-repeat; background-position: 0 -351px;
-height: 16px;
+.fc-header-left .fc-button-prev .fc-button-inner {
+    background: url('../img/icons-sa7c41345d9.png') no-repeat 0 -351px;
+    height: 16px;
 width: 11px;}
 
-.fc-header-left .fc-button-next .fc-button-inner {background: url('../img/icons-sa7c41345d9.png') no-repeat; background-position: 0 -367px;
-height: 16px;
+.fc-header-left .fc-button-next .fc-button-inner {
+    background: url('../img/icons-sa7c41345d9.png') no-repeat 0 -367px;
+    height: 16px;
 width: 11px;}
 
 /*------------------------------------------------------------------
