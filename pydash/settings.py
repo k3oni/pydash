@@ -10,9 +10,10 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-#SITE_ID = 1
+# SITE_ID = 1
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -93,7 +94,7 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
     # 'django.template.loaders.eggs.Loader',
-    )
+)
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
 
@@ -118,19 +119,19 @@ LOGGING = {
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
-	}
+        }
     },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
-	    'filters': ['require_debug_false'],
+            'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         }
     },
     'loggers': {
-	'django.request': {
+        'django.request': {
             'handlers': ['mail_admins'],
-    	    'level': 'ERROR',
+            'level': 'ERROR',
             'propagate': True,
         },
     }

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="icon" href="{% static "img/favicon.ico" %}">
     <title>{% block title %}PyDash v{{ version }}{% endblock %}</title>
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
     <link href="{% static "css/bootstrap-responsive.min.css" %}" rel="stylesheet">
@@ -36,15 +37,15 @@
   <div class="subnavbar-inner">
       <div class="container">
         <ul class="mainnav">
-            <li><a href="#refresh-os"><i class="icon-dashboard"></i><span>General</span> </a> </li>
-            <li><a href="#refresh-df"><i class="icon-hdd"></i><span>Disk</span> </a> </li>
-            <li><a href="#refresh-cpu"><i class="icon-check"></i><span>CPU</span> </a> </li>
-            <li><a href="#refresh-ram"><i class="icon-list-alt"></i><span>RAM</span> </a> </li>
-            <li><a href="#refresh-load"><i class="icon-bolt"></i><span>Load</span> </a> </li>
-            <li><a href="#refresh-online"><i class="icon-user"></i><span>Users</span> </a> </li>
-            <li><a href="#refresh-netstat"><i class="icon-angle-down"></i><span>Netstat</span> </a> </li>
-    	    <li><a href="#refresh-ispeed"><i class="icon-exchange"></i><span>Network</span> </a> </li>
-    	    <li><a href="#refresh-ps"><i class="icon-list-alt"></i><span>Processes</span> </a> </li>
+            <li><a href="#refresh-os"><i class="fa fa-dashboard"></i><span>General</span> </a> </li>
+            <li><a href="#refresh-df"><i class="fa fa-hdd-o"></i><span>Disk</span> </a> </li>
+            <li><a href="#refresh-cpu"><i class="fa fa-check"></i><span>CPU</span> </a> </li>
+            <li><a href="#refresh-ram"><i class="fa fa-list-alt"></i><span>RAM</span> </a> </li>
+            <li><a href="#refresh-load"><i class="fa fa-bolt"></i><span>Load</span> </a> </li>
+            <li><a href="#refresh-online"><i class="fa fa-user"></i><span>Users</span> </a> </li>
+            <li><a href="#refresh-netstat"><i class="fa fa-angle-down"></i><span>Netstat</span> </a> </li>
+    	    <li><a href="#refresh-ispeed"><i class="fa fa-exchange"></i><span>Network</span> </a> </li>
+    	    <li><a href="#refresh-ps"><i class="fa fa-list-alt"></i><span>Processes</span> </a> </li>
     	    <li></li>
 	</ul>
       </div>
@@ -61,8 +62,8 @@
         
         <div class="span3">
          <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-dashboard"></i>
-              <h3>General Info</h3><i class="icon-minus"></i>
+            <div class="widget-header"> <i class="fa fa-dashboard"></i>
+              <h3>General Info</h3><i class="fa fa-minus"></i>
               <div id="refresh-os">
               </div>
             </div>
@@ -85,8 +86,8 @@
         
         <div class="span3">
          <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-check"></i>
-              <h3>CPU Usage %</h3><i class="icon-minus"></i>
+            <div class="widget-header"> <i class="fa fa-check"></i>
+              <h3>CPU Usage %</h3><i class="fa fa-minus"></i>
               <div id="refresh-cpu">
               </div>
             </div>
@@ -106,8 +107,8 @@
         
         <div class="span6">
          <div class="widget widget-nopad">
-            <div class="widget-header"> <i class="icon-list-alt"></i>
-                <h3>Memory Usage</h3><i class="icon-minus"></i>
+            <div class="widget-header"> <i class="fa fa-list-alt"></i>
+                <h3>Memory Usage</h3><i class="fa fa-minus"></i>
                 <div id="refresh-ram">
                 </div>
             </div>
@@ -130,8 +131,8 @@
     <div class="row">
          <div class="span6">
            <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-hdd"></i>
-              <h3>Disk Usage</h3><i class="icon-minus"></i>
+            <div class="widget-header"> <i class="fa fa-hdd-o"></i>
+              <h3>Disk Usage</h3><i class="fa fa-minus"></i>
               <div id="refresh-df">
               </div>
             </div>
@@ -146,8 +147,8 @@
          </div>
           <div class="span6">
             <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-bolt"></i>
-              <h3>Load Average</h3><i class="icon-minus"></i>
+            <div class="widget-header"> <i class="fa fa-bolt"></i>
+              <h3>Load Average</h3><i class="fa fa-minus"></i>
               <div id="refresh-load">
               </div>
             </div>
@@ -168,8 +169,8 @@
       <div class="row">
     	<div class="span6">
            <div class="widget widget-table action-table">
-            <div class="widget-header"> <i class="icon-level-up"></i>
-              <h3>IP Adresses</h3><i class="icon-minus"></i>
+            <div class="widget-header"> <i class="fa fa-level-up"></i>
+              <h3>IP Adresses</h3><i class="fa fa-minus"></i>
               <div id="refresh-ip">
               </div>
             </div>
@@ -186,8 +187,8 @@
     
          <div class="span3">
            <div class="widget">
-            <div class="widget-header"> <i class="icon-exchange"></i>
-              <h3>Internet Traffic</h3><i class="icon-minus"></i>
+            <div class="widget-header"> <i class="fa fa-exchange"></i>
+              <h3>Internet Traffic</h3><i class="fa fa-minus"></i>
               <div id="refresh-ispeed">
               </div>
             </div>
@@ -208,8 +209,8 @@
          
          <div class="span3">
            <div class="widget">
-            <div class="widget-header"> <i class="icon-angle-up"></i>
-              <h3>Disk Reads/Writes</h3><i class="icon-minus"></i>
+            <div class="widget-header"> <i class="fa fa-angle-up"></i>
+              <h3>Disk Reads/Writes</h3><i class="fa fa-minus"></i>
               <div id="refresh-diskio">
               </div>
             </div>
@@ -233,8 +234,8 @@
     <div class="row">
         <div class="span6">
              <div class="widget widget-table action-table">
-                <div class="widget-header"> <i class="icon-group"></i>
-                  <h3>Online</h3><i class="icon-minus"></i>
+                <div class="widget-header"> <i class="fa fa-group"></i>
+                  <h3>Online</h3><i class="fa fa-minus"></i>
                   <div id="refresh-online">
                   </div>
                 </div>
@@ -250,8 +251,8 @@
 	    <!-- /span -->
         <div class="span6">
              <div class="widget widget-table action-table">
-                <div class="widget-header"> <i class="icon-angle-down"></i>
-                  <h3>Netstat</h3><i class="icon-minus"></i>
+                <div class="widget-header"> <i class="fa fa-angle-down"></i>
+                  <h3>Netstat</h3><i class="fa fa-minus"></i>
                   <div id="refresh-netstat">
                   </div>
                 </div>
@@ -271,8 +272,8 @@
       <div class="row">
         <div class="span12">
           <div class="widget">
-            <div class="widget-header"> <i class="icon-list-alt"></i>
-              <h3> Processes </h3><i class="icon-minus"></i>
+            <div class="widget-header"> <i class="fa fa-list-alt"></i>
+              <h3> Processes </h3><i class="fa fa-minus"></i>
               <div id="refresh-ps">
               </div>
             </div>
