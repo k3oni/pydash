@@ -26,7 +26,7 @@ __[View Demo](http://pydash.hostechs.com/)__
 
 Django App
 ==========
-For the Django App please check ###[here](https://github.com/k3oni/pydash-django-app)
+For the Django App please check [here](https://github.com/k3oni/pydash-django-app)
 
 Installation
 ============
