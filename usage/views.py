@@ -273,6 +273,16 @@ def memusage(request):
             del datasets_used[0]
             if len(datasets_used) == 10:
                 break
+    if len(datasets_buffers) > 10:
+        while datasets_buffers:
+            del datasets_buffers[0]
+            if len(datasets_buffers) == 10:
+                break
+    if len(datasets_cached) > 10:
+        while datasets_cached:
+            del datasets_cached[0]
+            if len(datasets_cached) == 10:
+                break
     if len(datasets_free) <= 9:
         datasets_free.append(int(mem_usage['free']))
     if len(datasets_free) == 10:
