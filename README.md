@@ -1,4 +1,4 @@
-pyDash - v1.4.4  [![Follow @hostechs](https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_32.png)](https://twitter.com/hostechs)    [![View Profile](https://dlc1-s.licdn.com/sites/default/files/InBug-30px-R.png)](http://www.linkedin.com/in/hostechs/)
+pyDash - v1.4.5  [![Follow @hostechs](https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_32.png)](https://twitter.com/hostechs)    [![View Profile](https://dlc1-s.licdn.com/sites/default/files/InBug-30px-R.png)](http://www.linkedin.com/in/hostechs/)
 ======
 
 
