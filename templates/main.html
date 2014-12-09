@@ -19,7 +19,7 @@
 <a href="https://github.com/k3oni/pydash"><img style="position: absolute; top: 0; right: 0; border: 0;z-index:99999999;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 <div class="navbar navbar-fixed-top" style="">
     <div class="navbar-inner">
-	<div class="container">
+    <div class="container">
             <a class="brand" href="/">pyDash v{{ version }}</a>
             <ul class="btn btn-mini">
                 {% if request.user.is_authenticated or user.is_authenticated %}
@@ -29,7 +29,7 @@
                 {% endif %}
             </ul>
             <div class="nav-collapse">
-	    </div>
+        </div>
         </div>
     </div>
  </div>
@@ -44,10 +44,10 @@
             <li><a href="#refresh-load"><i class="fa fa-bolt"></i><span>Load</span> </a> </li>
             <li><a href="#refresh-online"><i class="fa fa-user"></i><span>Users</span> </a> </li>
             <li><a href="#refresh-netstat"><i class="fa fa-angle-down"></i><span>Netstat</span> </a> </li>
-    	    <li><a href="#refresh-ispeed"><i class="fa fa-exchange"></i><span>Network</span> </a> </li>
-    	    <li><a href="#refresh-ps"><i class="fa fa-list-alt"></i><span>Processes</span> </a> </li>
-    	    <li></li>
-	</ul>
+            <li><a href="#refresh-ispeed"><i class="fa fa-exchange"></i><span>Network</span> </a> </li>
+            <li><a href="#refresh-ps"><i class="fa fa-list-alt"></i><span>Processes</span> </a> </li>
+            <li></li>
+    </ul>
       </div>
       <!-- /container --> 
     </div>
@@ -71,12 +71,12 @@
             <div class="widget-content">
                 <br>
               <div style="text-align:center;">
-		<b>OS:</b> <span class="" id="get-osname"></span><br>
-              	<b>Uptime:</b> <span class="" id="get-uptime"></span> Hours<br>
-              	<b>Hostname:</b> <span class="" id="get-hostname"></span><br>
-              	<b>Kernel:</b> <span class="" id="get-kernel"></span><br>
-		<b>CPU(s):</b> <span class="" id="get-cpucount"></span> x <span class="" id="get-cputype"></span>
-              	<br><br>
+        <b>OS:</b> <span class="" id="get-osname"></span><br>
+                <b>Uptime:</b> <span class="" id="get-uptime"></span> Hours<br>
+                <b>Hostname:</b> <span class="" id="get-hostname"></span><br>
+                <b>Kernel:</b> <span class="" id="get-kernel"></span><br>
+        <b>CPU(s):</b> <span class="" id="get-cpucount"></span> x <span class="" id="get-cputype"></span>
+                <br><br>
               </div>
             </div>
             <!-- /widget-content -->
@@ -93,12 +93,12 @@
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-        	<p></p>
+            <p></p>
                 <canvas id="cpuuChart" width="270" height="180"></canvas>
                 <div>
-        	    <span class="cpuf">{% trans "Free" %}</span>
-        	    <span class="cpuu">{% trans "Used" %}</span>
-    		</div>
+                <span class="cpuf">{% trans "Free" %}</span>
+                <span class="cpuu">{% trans "Used" %}</span>
+            </div>
             </div>
             <!-- /widget-content -->
           </div>
@@ -117,11 +117,11 @@
                     <p></p>
                     <canvas id="memoryChart" width="560" height="200"></canvas>
                     <div>
-        		<span class="memf">{% trans "Free" %}</span>
-        		<span class="memu">{% trans "Used" %}</span>
+                <span class="memf">{% trans "Free" %}</span>
+                <span class="memu">{% trans "Used" %}</span>
                 <span class="memb">{% trans "Buffers" %}</span>
                 <span class="memc">{% trans "Cached" %}</span>
-    		    </div>
+                </div>
                 </div>
                 <!-- /widget-content -->
                 
@@ -140,8 +140,8 @@
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-		<table id="get_disk" class="table table-hover table-condensed table-bordered" >
-		</table>
+        <table id="get_disk" class="table table-hover table-condensed table-bordered" >
+        </table>
             </div>
             <!-- /widget-content -->
           </div>
@@ -169,7 +169,7 @@
     
     
       <div class="row">
-    	<div class="span6">
+        <div class="span6">
            <div class="widget widget-table action-table">
             <div class="widget-header"> <i class="fa fa-level-up"></i>
               <h3>IP Adresses</h3><i class="fa fa-minus"></i>
@@ -178,8 +178,8 @@
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-		<table id="get_ips" class="table table-hover table-condensed table-bordered">
-		</table>
+        <table id="get_ips" class="table table-hover table-condensed table-bordered">
+        </table>
             </div>
             <!-- /widget-content -->
           </div>
@@ -196,12 +196,12 @@
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-        	<p></p>
+            <p></p>
                 <canvas id="trfChart" width="270" height="200"></canvas>
                 <div>
-        	    <span class="netin">{% trans "In" %}</span>
-        	    <span class="netout">{% trans "Out" %}</span>
-    		</div>
+                <span class="netin">{% trans "In" %}</span>
+                <span class="netout">{% trans "Out" %}</span>
+            </div>
             </div>
             
             <!-- /widget-content -->
@@ -218,12 +218,12 @@
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-        	<p></p>
+            <p></p>
                 <canvas id="dskChart" width="270" height="200"></canvas>
                 <div>
-        	    <span class="diskr">{% trans "Reads" %}</span>
-        	    <span class="diskw">{% trans "Writes" %}</span>
-    		</div>
+                <span class="diskr">{% trans "Reads" %}</span>
+                <span class="diskw">{% trans "Writes" %}</span>
+            </div>
             </div>
             <!-- /widget-content -->
           </div>
@@ -250,7 +250,7 @@
              </div>
               <!-- /widget -->
         </div>
-	    <!-- /span -->
+        <!-- /span -->
         <div class="span6">
              <div class="widget widget-table action-table">
                 <div class="widget-header"> <i class="fa fa-angle-down"></i>
@@ -267,7 +267,7 @@
              </div>
               <!-- /widget -->
         </div>
-	    <!-- /span -->
+        <!-- /span -->
     </div>
     <!-- /row -->
 
@@ -281,8 +281,8 @@
             </div>
             <!-- /widget-header -->
             <div class="widget-content">
-		<table id="get_proc" class="table table-hover table-condensed table-bordered">
-		</table>
+        <table id="get_proc" class="table table-hover table-condensed table-bordered">
+        </table>
             </div>
             <!-- /widget-content -->
           </div>
@@ -296,7 +296,7 @@
     </div>
     <!-- /main-inner -->
  </div>  
-<!-- /main -->	    
+<!-- /main -->      
 
 <div class="footer">
   <div class="footer-inner">
