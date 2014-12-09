@@ -247,12 +247,19 @@ def get_mem():
     Get memory usage
     """
     try:
-        pipe = os.popen("free -tmo | " + "grep 'Mem' | " + "awk '{print $2,$4}'")
+        pipe = os.popen(
+            "free -tmo | " + "grep 'Mem' | " + "awk '{print $2,$4,$6,$7}'")
         data = pipe.read().strip().split()
         pipe.close()
 
         allmem = int(data[0])
         freemem = int(data[1])
+        buffers = int(data[2])
+        cachedmem = int(data[3])
+
+        # Memory in buffers + cached is actually available, so we count it
+        # as free. See http://www.linuxatemyram.com/ for details
+        freemem += buffers + cachedmem
 
         percent = (100 - ((freemem * 100) / allmem))
         usage = (allmem - freemem)
