@@ -297,7 +297,7 @@ def memusage(request):
         datasets_buffers.append(int(mem_usage['buffers']))
     if len(datasets_buffers) == 10:
         datasets_buffers.append(int(mem_usage['buffers']))
-        del datasets_free[0]
+        del datasets_buffers[0]
     if len(datasets_cached) <= 9:
         datasets_cached.append(int(mem_usage['cached']))
     if len(datasets_cached) == 10:

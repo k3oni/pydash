@@ -333,7 +333,7 @@ var mem_ctx = $("#memoryChart").get(0).getContext("2d");
             $.getJSON('/info/memory/', function(data) {
                 var options = {
                     animation : false,
-                    pointDotRadius : 2,
+                    pointDotRadius : 4,
                     scaleLabel : "<%=value%> Mb"
                 }
                 memChart.Line(data, options);
