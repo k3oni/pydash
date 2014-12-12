@@ -264,7 +264,7 @@ def get_mem():
         percent = (100 - ((freemem * 100) / allmem))
         usage = (allmem - freemem)
 
-        mem_usage = {'usage': usage, 'free': freemem, 'percent': percent}
+        mem_usage = {'usage': usage, 'buffers': buffers, 'cached': cachedmem, 'free': freemem, 'percent': percent}
 
         data = mem_usage
 
