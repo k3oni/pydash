@@ -1,4 +1,4 @@
-pyDash - v1.4.5  [![View Profile](https://dlc1-s.licdn.com/sites/default/files/InBug-30px-R.png)](http://www.linkedin.com/in/hostechs/)
+pyDash - v1.4.6  [![View Profile](https://dlc1-s.licdn.com/sites/default/files/InBug-30px-R.png)](http://www.linkedin.com/in/hostechs/)
 ======
 
 
@@ -12,8 +12,9 @@ The dashboard is built using only Python libraries available in the main Python 
 
 Current dependencies:
 
-  - == Django 1.6.8
-  - == Python 2.x
+  - >= Django 1.5
+  - >= Python 2.x
+  - >= Python 3.x
 
 __[View Demo](http://pydash.hostechs.com/)__
 
