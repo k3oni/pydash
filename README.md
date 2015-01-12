@@ -16,12 +16,6 @@ Current dependencies:
   - >= Python 2.x
   - >= Python 3.x
 
-__[View Demo](http://pydash.hostechs.com/)__
-
-     user: admin
-     pass: admin
-
-
 ![pyDash](https://www.yaktab.com/en/2btxew)
 
 
