@@ -16,7 +16,7 @@ Current dependencies:
   - >= Python 2.x
   - >= Python 3.x
 
-![pyDash](https://www.yaktab.com/en/2btxew)
+![pyDash](https://www.yaktab.com/en/344-XXpBszBjhmLXvhgDExdXqx6Grd8X36nMjJm-51234-pydash.png)
 
 
 Django App
