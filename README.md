@@ -1,4 +1,4 @@
-pyDash - v1.4.6  [![View Profile](https://dlc1-s.licdn.com/sites/default/files/InBug-30px-R.png)](http://www.linkedin.com/in/hostechs/)
+pyDash - v1.4.6  [![View Profile]](http://www.linkedin.com/in/hostechs/)
 ======
 
 
@@ -15,9 +15,6 @@ Current dependencies:
   - >= Django 1.5
   - >= Python 2.x
   - >= Python 3.x
-
-![pyDash](https://www.yaktab.com/en/344-XXpBszBjhmLXvhgDExdXqx6Grd8X36nMjJm-51234-pydash.png)
-
 
 Django App
 ==========
