@@ -1,4 +1,4 @@
-pyDash - v1.4.6  [View Profile](http://www.linkedin.com/in/hostechs/)
+pyDash - v1.4.6
 ======
 
 
