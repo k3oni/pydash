@@ -23,19 +23,19 @@ For the Django App please check [here](https://github.com/k3oni/pydash-django-ap
 Installation
 ============
 
-###[Installing pyDash](https://github.com/k3oni/pydash/wiki)
+### [Installing pyDash](https://github.com/k3oni/pydash/wiki)
 
 
 Settings
 ========
 
-###[pyDash settings](https://github.com/k3oni/pydash/wiki/Settings)
+### [pyDash settings](https://github.com/k3oni/pydash/wiki/Settings)
 
 
 Remote data retrieval
 =====================
 
-###[pyDash remote data retrieval](https://github.com/k3oni/pydash/wiki/Remote-data-retreival)
+### [pyDash remote data retrieval](https://github.com/k3oni/pydash/wiki/Remote-data-retreival)
 
 
 OS Support
