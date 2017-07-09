@@ -248,7 +248,7 @@ def get_mem():
     """
     try:
         pipe = os.popen(
-            "free -tmo | " + "grep 'Mem' | " + "awk '{print $2,$4,$6,$7}'")
+            "free -tm | " + "grep 'Mem' | " + "awk '{print $2,$4,$6,$7}'")
         data = pipe.read().strip().split()
         pipe.close()
 
